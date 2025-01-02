@@ -4,7 +4,7 @@ class CustomRecipeCard extends StatelessWidget {
   final String title;
   final String chefName;
   final double rating;
-  final String cookingTime;
+  final int cookingTime;
   final String imageUrl;
   final VoidCallback onFavoritePressed;
   final VoidCallback targetPage;
@@ -96,7 +96,7 @@ class CustomRecipeCard extends StatelessWidget {
                     width: 3,
                   ),
                   Text(
-                    cookingTime,
+                    cookingTime.toString(),
                     style: TextStyle(color: Colors.grey, fontSize: 15),
                   ),
                 ],
@@ -111,13 +111,15 @@ class CustomRecipeCard extends StatelessWidget {
                   color: Colors.white,
                   shape: CircleBorder(),
                 ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.favorite_border_outlined,
-                    size: 20,
+                child: Center(
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.favorite_border_outlined,
+                      size: 20,
+                    ),
+                    color: Colors.teal,
+                    onPressed: () {},
                   ),
-                  color: Colors.teal,
-                  onPressed: () {},
                 ),
               ),
             ),
