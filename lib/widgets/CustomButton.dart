@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
+import '../utils/colors.dart';
+import 'CustomIconTextRow.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
-  final IconData? icon;
+  final double? titleSize;
+  final FontWeight titleWeight;
+  final Color? titleColor;
+  final IconData? rightIcon;
+  final IconData? leftIcon;
+  final double? rightIconSize;
+  final double? leftIconSize;
+  final Color? rightIconColor;
+  final Color? leftIconColor;
   final double width;
   final double height;
-  final double? fontSize;
   final VoidCallback onPressed;
+  final Color buttonColor;
 
   const CustomButton({
     Key? key,
     required this.title,
-    this.icon,
-    this.fontSize,
+    this.titleSize,
+    this.titleWeight = FontWeight.bold,
+    this.titleColor,
+    this.rightIcon,
+    this.leftIcon,
+    this.rightIconSize,
+    this.leftIconSize,
     this.width = 200,
     this.height = 50,
     required this.onPressed,
+    this.rightIconColor,
+    this.leftIconColor,
+    this.buttonColor = AppColors.primaryColor,
   }) : super(key: key);
 
   @override
@@ -24,32 +42,24 @@ class CustomButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green, // لون الخلفية
+          backgroundColor: buttonColor, // استخدام اللون من الـ Theme
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10), // الزوايا المستديرة
           ),
         ),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon != null) ...[
-              Icon(
-                icon,
-                color: Colors.white,
-              ),
-              const SizedBox(width: 8), // مسافة بين الأيقونة والنص
-            ],
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        child: CustomIconTextRow(
+          title: title,
+          titleSize: titleSize,
+          titleWeight: titleWeight,
+          titleColor: titleColor,
+          rightIcon: rightIcon,
+          rightIconSize: rightIconSize,
+          rightIconColor: rightIconColor,
+          leftIcon: leftIcon,
+          leftIconSize: leftIconSize,
+          leftIconColor: leftIconColor,
         ),
       ),
     );

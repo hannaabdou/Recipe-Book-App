@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_book_app/utils/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
-  final String hintText;
+  final Color labelColor;
+  final FontWeight labelFontWeight;
+  final String? hintText;
   final ValueChanged<String>? onChanged;
   final TextEditingController? controller;
+  final int? maxLines;
 
   const CustomTextField({
     Key? key,
     required this.label,
-    required this.hintText,
+    this.hintText,
     this.onChanged,
     this.controller,
+    this.labelColor = Colors.black,
+    this.labelFontWeight = FontWeight.normal,
+    this.maxLines,
   }) : super(key: key);
 
   @override
@@ -21,17 +28,20 @@ class CustomTextField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: labelColor,
             fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontWeight: labelFontWeight,
           ),
         ),
-        const SizedBox(height: 8), // مسافة بين النص والحقل
+        const SizedBox(height: 5), // مسافة بين النص والحقل
         TextField(
+          cursorColor: AppColors.primaryColor,
           controller: controller,
           onChanged: onChanged,
-          style: const TextStyle(color: Colors.white), // النص داخل الحقل
+          maxLines: maxLines,
+          style: const TextStyle(color: Colors.white),
+          // النص داخل الحقل
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: const TextStyle(color: Colors.grey),
@@ -43,7 +53,10 @@ class CustomTextField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.white),
+              borderSide: BorderSide(
+                color: AppColors.primaryColor,
+                width: 2.5,
+              ),
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_book_app/utils/colors.dart';
 
-import '../widgets/CustomRecipeCard.dart';
+import '../widgets/AddRecipeBottomSheet.dart';
 
 class HomePage extends StatelessWidget {
   final List<String> filters = [
@@ -15,15 +16,28 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomRecipeCard(
-              title: 'Lol',
-              imageUrl: 'assets/IMG/Recipe Photos/Spicy Chicken Biryani.jpg',
-              targetPage: (){},
-              onFavoritePressed: (){},
-              rating: 4.5,
-              cookingTime: 30,
-              chefName: 'Gogo',
-            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                iconSize: 100,
+                iconColor: Colors.white,
+                backgroundColor: AppColors.primaryColor,
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(16),
+                        topLeft: Radius.circular(16)),
+                  ),
+                  builder: (context) => AddRecipeBottomSheet(),
+                );
+              },
+              child: Icon(
+                Icons.add,
+              ),
+            )
           ],
         ),
       ),
