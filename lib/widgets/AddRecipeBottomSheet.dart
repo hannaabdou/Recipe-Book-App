@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:recipe_book_app/widgets/CustomButton.dart';
 import 'package:recipe_book_app/widgets/CustomTextField.dart';
 
+import 'UploadPhotoFunction.dart';
+
 class AddRecipeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,8 +12,8 @@ class AddRecipeBottomSheet extends StatelessWidget {
         left: 20,
         right: 20,
         top: 20,
-        bottom: 20,
-        // bottom: MediaQuery.of(context).viewInsets.bottom,
+        // bottom: 20,
+        bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
       child: ListView(
         shrinkWrap: true,
@@ -30,7 +32,13 @@ class AddRecipeBottomSheet extends StatelessWidget {
               ),
               SizedBox(width: 10),
               CustomButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final image =
+                      await UploadPhotoFunction.pickImageFromGallery();
+                  if (image != null) {
+                    print('Image selected: ${image.path}');
+                  }
+                },
                 title: 'Upload Photo',
                 titleColor: Colors.white,
                 titleSize: 20,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_book_app/utils/colors.dart';
 
+import '../utils/validators.dart';
+
 class CustomTextField extends StatelessWidget {
   final String label;
   final Color labelColor;
@@ -40,7 +42,9 @@ class CustomTextField extends StatelessWidget {
           controller: controller,
           onChanged: onChanged,
           maxLines: maxLines,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(
+            color: Colors.black,
+          ),
           // النص داخل الحقل
           decoration: InputDecoration(
             hintText: hintText,
@@ -58,6 +62,7 @@ class CustomTextField extends StatelessWidget {
                 width: 2.5,
               ),
             ),
+
           ),
         ),
       ],
