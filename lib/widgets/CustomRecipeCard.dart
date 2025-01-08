@@ -6,7 +6,6 @@ class CustomRecipeCard extends StatelessWidget {
   final double rating;
   final int cookingTime;
   final String imageUrl;
-  final VoidCallback onFavoritePressed;
   final VoidCallback targetPage;
 
   const CustomRecipeCard({
@@ -16,7 +15,6 @@ class CustomRecipeCard extends StatelessWidget {
     required this.chefName,
     required this.rating,
     required this.cookingTime,
-    required this.onFavoritePressed,
     required this.targetPage,
   }) : super(key: key);
 
@@ -102,6 +100,7 @@ class CustomRecipeCard extends StatelessWidget {
                 ],
               ),
             ),
+            // TODO "Saved Recipe Button"
             Positioned(
               top: 5,
               right: 10,
