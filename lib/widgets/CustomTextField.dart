@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/utils/colors.dart';
-
-import '../utils/validators.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -32,11 +31,11 @@ class CustomTextField extends StatelessWidget {
           label,
           style: TextStyle(
             color: labelColor,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: labelFontWeight,
           ),
         ),
-        const SizedBox(height: 5), // مسافة بين النص والحقل
+        SizedBox(height: 5.h), // مسافة بين النص والحقل
         TextField(
           cursorColor: AppColors.primaryColor,
           controller: controller,
@@ -62,7 +61,6 @@ class CustomTextField extends StatelessWidget {
                 width: 2.5,
               ),
             ),
-
           ),
         ),
       ],

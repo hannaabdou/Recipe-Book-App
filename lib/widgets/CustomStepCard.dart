@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomStepCard extends StatelessWidget {
-  final String stepNumber;
+  final int stepNumber;
   final String description;
 
   const CustomStepCard({
@@ -23,17 +24,17 @@ class CustomStepCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              stepNumber,
+              'Step ${stepNumber.toString()}',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               description,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 14.sp,
                 color: Colors.grey,
               ),
             ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomIconTextRow extends StatelessWidget {
   final String title;
   final double? titleSize;
-  final FontWeight titleWeight;
   final Color? titleColor;
+  final FontWeight titleWeight;
   final IconData? rightIcon;
   final IconData? leftIcon;
   final double? rightIconSize;
@@ -36,7 +37,7 @@ class CustomIconTextRow extends StatelessWidget {
             leftIcon,
             color: leftIconColor ?? Colors.black,
             // تعيين لون افتراضي إذا لم يتم تحديده
-            size: leftIconSize ?? 24, // تعيين حجم افتراضي
+            size: leftIconSize ?? 24.r, // تعيين حجم افتراضي
           ),
           const SizedBox(width: 5),
         ],
@@ -44,7 +45,7 @@ class CustomIconTextRow extends StatelessWidget {
           title,
           style: TextStyle(
             color: titleColor ?? Colors.black, // تعيين لون افتراضي
-            fontSize: titleSize ?? 16, // تعيين حجم افتراضي
+            fontSize: titleSize ?? 16.sp, // تعيين حجم افتراضي
             fontWeight: titleWeight,
           ),
         ),
@@ -53,7 +54,7 @@ class CustomIconTextRow extends StatelessWidget {
           Icon(
             rightIcon,
             color: rightIconColor ?? Colors.black, // تعيين لون افتراضي
-            size: rightIconSize ?? 24, // تعيين حجم افتراضي
+            size: rightIconSize ?? 24.r, // تعيين حجم افتراضي
           ),
         ],
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomFilter extends StatefulWidget {
   final List<String> filters;
@@ -33,23 +34,23 @@ class _CustomFilterState extends State<CustomFilter> {
           return GestureDetector(
             onTap: () => _onFilterSelected(index),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.w,
+                vertical: 7.h,
+              ),
               decoration: BoxDecoration(
                 color:
                     _selectedIndex == index ? Colors.teal : Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 7),
-                child: Text(
-                  filter,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: _selectedIndex == index
-                        ? Colors.white
-                        : Color(0xFFFF71B1A1),
-                  ),
+              child: Text(
+                filter,
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.bold,
+                  color: _selectedIndex == index
+                      ? Colors.white
+                      : Color(0xFFFF71B1A1),
                 ),
               ),
             ),

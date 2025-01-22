@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  final List<String> filters = [
-    'Ingredient',
-    'Procedure',
-  ];
+import '../widgets/AddRecipeBottomSheet.dart';
 
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AddRecipeBottomSheet(),
+          );
+        },
+        child: Icon(
+          Icons.add,
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [],
+          ),
         ),
       ),
     );
