@@ -4,12 +4,13 @@ import 'package:recipe_book_app/utils/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final double labelSize;
   final Color labelColor;
   final FontWeight labelFontWeight;
   final String? hintText;
+  final int? maxLines;
   final ValueChanged<String>? onChanged;
   final TextEditingController? controller;
-  final int? maxLines;
 
   const CustomTextField({
     Key? key,
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.labelColor = Colors.black,
     this.labelFontWeight = FontWeight.normal,
     this.maxLines,
+    this.labelSize = 16,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class CustomTextField extends StatelessWidget {
           label,
           style: TextStyle(
             color: labelColor,
-            fontSize: 16.sp,
+            fontSize: labelSize.sp,
             fontWeight: labelFontWeight,
           ),
         ),
