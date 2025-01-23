@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/screens/HomePage.dart';
 
 class CustomRecipeCard extends StatelessWidget {
   final String title;
