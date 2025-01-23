@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final double labelSize;
   final Color labelColor;
+  final String? labelFamily;
   final FontWeight labelFontWeight;
   final String? hintText;
   final int? maxLines;
@@ -22,6 +23,7 @@ class CustomTextField extends StatelessWidget {
     this.labelFontWeight = FontWeight.normal,
     this.maxLines,
     this.labelSize = 16,
+    this.labelFamily,
   }) : super(key: key);
 
   @override
@@ -33,8 +35,9 @@ class CustomTextField extends StatelessWidget {
           label,
           style: TextStyle(
             color: labelColor,
-            fontSize: labelSize.sp,
+            fontSize: labelSize,
             fontWeight: labelFontWeight,
+            fontFamily: labelFamily,
           ),
         ),
         SizedBox(height: 5.h), // مسافة بين النص والحقل
