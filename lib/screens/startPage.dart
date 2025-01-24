@@ -62,8 +62,13 @@ class startPage extends StatelessWidget {
             ),
             CustomButton(
               title: 'Start Cooking',
-              titleSize: 16.sp,
+              titleSize: 14.sp,
               titleColor: Colors.white,
+              icon: Icons.arrow_forward,
+              iconSize: 16.r,
+              verticalSize: 7.h,
+              horizontalSize: 50.w,
+              iconOnRight: true,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -72,7 +77,7 @@ class startPage extends StatelessWidget {
                   ),
                 );
               },
-            )
+            ),
           ],
         )
       ],

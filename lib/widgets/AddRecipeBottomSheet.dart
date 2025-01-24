@@ -4,7 +4,6 @@ import 'package:recipe_book_app/widgets/CustomButton.dart';
 import 'package:recipe_book_app/widgets/CustomTextField.dart';
 import 'package:recipe_book_app/widgets/customTextStyle.dart';
 import 'package:recipe_book_app/widgets/uploadPhotoButton.dart';
-import '../utils/UploadPhotoFunction.dart';
 
 class AddRecipeBottomSheet extends StatelessWidget {
   @override

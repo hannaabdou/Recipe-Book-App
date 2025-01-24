@@ -31,45 +31,45 @@ class _signUpPageState extends State<signUpPage> {
                     Text(
                       'Create an account',
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 18.sp,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'Let’s help you set up your account,\n it won’t take long.',
+                      'Let’s help you set up your account,\nit won’t take long.',
                       style: TextStyle(
                         fontFamily: 'Poppins-SemiBold',
-                        fontSize: 10.sp,
+                        fontSize: 8.sp,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 25.h),
+                SizedBox(height: 20.h),
                 CustomTextField(
                   label: 'Name',
-                  labelSize: 14.sp,
+                  labelSize: 12.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Name',
                 ),
-                SizedBox(height: 7.h),
+                SizedBox(height: 5.h),
                 CustomTextField(
                   label: 'Email',
-                  labelSize: 14.sp,
+                  labelSize: 12.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Email',
                 ),
-                SizedBox(height: 7.h),
+                SizedBox(height: 5.h),
                 CustomTextField(
                   label: 'Password',
-                  labelSize: 14.sp,
+                  labelSize: 12.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Password',
                 ),
-                SizedBox(height: 7.h),
+                SizedBox(height: 5.h),
                 CustomTextField(
                   label: 'Confirm Password',
-                  labelSize: 14.sp,
+                  labelSize: 12.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Retype Password',
                 ),
@@ -143,7 +143,7 @@ class _signUpPageState extends State<signUpPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -151,16 +151,14 @@ class _signUpPageState extends State<signUpPage> {
                       onPressed: () {},
                       imagePath: 'assets/IMG/Icons/Google Icon.png',
                     ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
+                    SizedBox(width: 10.w),
                     socialButton(
                       onPressed: () {},
                       imagePath: 'assets/IMG/Icons/Facebook Icon.png',
                     ),
                   ],
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

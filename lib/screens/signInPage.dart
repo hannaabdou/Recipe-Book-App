@@ -41,28 +41,28 @@ class signInPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 25.h),
+                SizedBox(height: 20.h),
                 CustomTextField(
                   label: 'Email',
                   labelSize: 14.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Email',
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 5.h),
                 CustomTextField(
                   label: 'Password',
                   labelSize: 14.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Password',
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 5.h),
                 textButton(
                   onPressed: () {},
                   text: 'Forgot Password?',
                   textSize: 10.sp,
                   textColor: AppColors.textButtonColor,
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 5.h),
                 //Bottom Body
                 Center(
                   child: CustomButton(
