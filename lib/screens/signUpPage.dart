@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_book_app/screens/HomePage.dart';
 import '../utils/colors.dart';
 import '../widgets/CustomButton.dart';
 import '../widgets/CustomTextField.dart';
@@ -111,7 +112,14 @@ class _signUpPageState extends State<signUpPage> {
                     verticalSize: 7.h,
                     horizontalSize: 100.w,
                     iconOnRight: true,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 10.h),

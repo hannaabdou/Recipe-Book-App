@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_book_app/screens/HomePage.dart';
 import 'package:recipe_book_app/screens/signUpPage.dart';
 import '../Test_Page.dart';
 import '../utils/colors.dart';
@@ -78,7 +79,7 @@ class signInPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => testPage(),
+                          builder: (context) => HomePage(),
                         ),
                       );
                     },
