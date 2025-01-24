@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:recipe_book_app/screens/HomePage.dart';
 import 'package:recipe_book_app/screens/RecipeIngredientspage.dart';
+import 'package:recipe_book_app/screens/profilepage.dart';
 import 'package:recipe_book_app/screens/splashScreen.dart';
 import 'package:recipe_book_app/utils/boxs.dart';
 
@@ -23,8 +25,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-          home: splashScreen(),
-          // home: RecipeDetails(),
+          // home: splashScreen(),
+          home: HomePage(),
         );
       },
     );
