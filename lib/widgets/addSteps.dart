@@ -40,6 +40,7 @@ class _addStepsState extends State<addSteps> {
                     maxLines: 3,
                     decoration: InputDecoration(
                       hintText: 'Enter Step Description',
+                      hintStyle: TextStyle(fontSize: 10.sp, color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
                       ),

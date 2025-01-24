@@ -41,6 +41,7 @@ class _AddIngredientsState extends State<AddIngredients> {
                     controller: ingredient['controller'],
                     decoration: InputDecoration(
                       hintText: 'Enter Ingredient Name',
+                      hintStyle: TextStyle(fontSize: 10.sp, color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
                       ),
