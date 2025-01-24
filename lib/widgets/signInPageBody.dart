@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_book_app/screens/HomePage.dart';
 import 'package:recipe_book_app/screens/signUpPage.dart';
 import 'package:recipe_book_app/utils/colors.dart';
 import 'package:recipe_book_app/widgets/CustomButton.dart';
 import 'package:recipe_book_app/widgets/socialButton.dart';
 import 'package:recipe_book_app/widgets/textButton.dart';
 
+import '../Test_Page.dart';
 import 'CustomTextField.dart';
 
 class signInPageBody extends StatelessWidget {
@@ -71,7 +73,14 @@ class signInPageBody extends StatelessWidget {
                 verticalSize: 7.h,
                 horizontalSize: 100.w,
                 iconOnRight: true,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => testPage(),
+                    ),
+                  );
+                },
               ),
             ),
             SizedBox(height: 10.h),

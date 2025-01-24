@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/widgets/CustomButton.dart';
 import 'package:recipe_book_app/widgets/CustomTextField.dart';
+import 'package:recipe_book_app/widgets/customTextStyle.dart';
+import 'package:recipe_book_app/widgets/uploadPhotoButton.dart';
 import '../utils/UploadPhotoFunction.dart';
 
 class AddRecipeBottomSheet extends StatelessWidget {
@@ -18,60 +20,56 @@ class AddRecipeBottomSheet extends StatelessWidget {
       child: ListView(
         shrinkWrap: true,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                child: CustomTextField(
-                  label: 'Recipe Name',
-                  labelColor: Colors.black,
-                  labelFontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(width: 10.w),
-              CustomButton(
-                onPressed: () async {
-                  final image =
-                      await UploadPhotoFunction.pickImageFromGallery();
-                  if (image != null) {
-                    print('Image selected: ${image.path}');
-                  }
-                },
-                title: 'Upload Photo',
-                verticalSize: 12,
-                titleColor: Colors.white,
-              ),
-            ],
+          Center(
+            child: customTextStyle(
+              text: 'Add New Recipe',
+              textSize: 10.sp,
+              textFamily: 'Poppins-SemiBold',
+              textColor: Colors.black,
+            ),
+          ),
+          CustomTextField(
+            label: 'Name',
+            hintText: 'Ex: Traditional spare ribs baked',
+            labelSize: 10.sp,
+            labelColor: Colors.black,
+            labelFontWeight: FontWeight.bold,
           ),
           SizedBox(height: 10.h),
           CustomTextField(
-            label: 'Recipe Description',
+            label: 'Description',
             labelColor: Colors.black,
+            labelSize: 10.sp,
             labelFontWeight: FontWeight.bold,
             maxLines: 5,
           ),
           SizedBox(height: 10.h),
           CustomTextField(
-            label: 'Recipe Ingredients',
+            label: 'Ingredients',
             labelColor: Colors.black,
+            labelSize: 10.sp,
             labelFontWeight: FontWeight.bold,
             maxLines: 5,
           ),
           SizedBox(height: 10.h),
           CustomTextField(
-            label: 'Recipe Steps',
+            label: 'Steps',
             labelColor: Colors.black,
+            labelSize: 10.sp,
             labelFontWeight: FontWeight.bold,
             maxLines: 5,
           ),
+          SizedBox(height: 10.h),
+          uploadPhotoButton(),
           SizedBox(height: 10.h),
           CustomButton(
             onPressed: () {},
             title: 'Add',
+            titleSize: 14.sp,
             titleColor: Colors.white,
             buttonColor: Color(0xFFF4B855),
           ),
+          SizedBox(height: 15.h)
         ],
       ),
     );
