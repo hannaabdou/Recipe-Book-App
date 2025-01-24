@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_book_app/utils/colors.dart';
 
 class CustomFilter extends StatefulWidget {
   final List<String> filters;
+  final double paddingHorizontal;
+  final double paddingVertical;
+  final ValueChanged<int> onFilterChanged; // لإرسال الإشارة عند تغيير الفلتر
 
   const CustomFilter({
     Key? key,
     required this.filters,
+    required this.onFilterChanged,
+    this.paddingHorizontal = 16,
+    this.paddingVertical = 7,
   }) : super(key: key);
 
   @override
@@ -20,6 +27,7 @@ class _CustomFilterState extends State<CustomFilter> {
     setState(() {
       _selectedIndex = index;
     });
+    widget.onFilterChanged(index); // إرسال الإشارة عند تغيير الفلتر
   }
 
   @override
@@ -35,13 +43,23 @@ class _CustomFilterState extends State<CustomFilter> {
             onTap: () => _onFilterSelected(index),
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: 16.w,
-                vertical: 7.h,
+                horizontal: widget.paddingHorizontal.w,
+                vertical: widget.paddingVertical.h,
               ),
+              margin: EdgeInsets.symmetric(
+                  horizontal: _selectedIndex == index ? 0 : 4),
               decoration: BoxDecoration(
-                color:
-                    _selectedIndex == index ? Colors.teal : Colors.transparent,
+                color: _selectedIndex == index
+                    ? AppColors.primaryColor
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
+                border: Border.all(
+                  color: _selectedIndex == index
+                      ? Colors.transparent
+                      : AppColors.primaryColor,
+                  // اللون الرمادي عندما لا يكون محددًا
+                  width: 1, // سمك الحدود
+                ),
               ),
               child: Text(
                 filter,

@@ -4,13 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomIngredientCard extends StatelessWidget {
   final String imageUrl;
   final String ingredientName;
-  final int quantity;
 
   const CustomIngredientCard({
     Key? key,
     required this.imageUrl,
     required this.ingredientName,
-    required this.quantity,
   }) : super(key: key);
 
   @override
@@ -25,15 +23,15 @@ class CustomIngredientCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 40.h,
-              width: 40.w,
+              height: 30.h,
+              width: 30.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: Colors.white,
               ),
               child: Image.asset(
                 imageUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             SizedBox(width: 12.w),
@@ -41,16 +39,9 @@ class CustomIngredientCard extends StatelessWidget {
               child: Text(
                 ingredientName,
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-            ),
-            Text(
-              '${quantity}g',
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: Colors.grey,
               ),
             ),
           ],

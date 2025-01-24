@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:recipe_book_app/screens/RecipeIngredientspage.dart';
 import 'package:recipe_book_app/screens/splashScreen.dart';
+import 'package:recipe_book_app/utils/boxs.dart';
 
-import 'Test_Page.dart';
+void main() async {
+  await Hive.initFlutter();
 
-void main() {
+  await Hive.openBox(KBoxs.addRecipeBox);
   runApp(MyApp());
 }
 
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
           // home: splashScreen(),
-          home: testPage(),
+          home: RecipeDetails(),
         );
       },
     );

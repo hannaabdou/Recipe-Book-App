@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/widgets/customTextStyle.dart';
-import '../utils/UploadPhotoFunction.dart';
+import 'UploadPhotoFunction.dart';
 
 class uploadPhotoButton extends StatefulWidget {
   final String label;

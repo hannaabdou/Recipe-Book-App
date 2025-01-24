@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomRecipeCard extends StatefulWidget {
   final String title;
-  final double rating;
-  final int cookingTime;
   final String imageUrl;
   final VoidCallback targetPage;
   final bool showDeleteIcon;
@@ -13,8 +11,6 @@ class CustomRecipeCard extends StatefulWidget {
     Key? key,
     required this.imageUrl,
     this.title = '',
-    required this.rating,
-    required this.cookingTime,
     required this.targetPage,
     this.showDeleteIcon = false,
   }) : super(key: key);
@@ -82,7 +78,6 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
               right: 10,
               child: Visibility(
                 visible: widget.showDeleteIcon,
-                // نتحكم في إظهار الأيقونة بناءً على هذا المتغير
                 child: Container(
                   width: 35.w,
                   decoration: ShapeDecoration(
@@ -105,41 +100,22 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
             Positioned(
               bottom: 25,
               right: 10,
-              child: Row(
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.timer_outlined,
-                        color: Colors.grey,
-                        size: 16.r,
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        '${widget.cookingTime.toString()} min',
-                        style: TextStyle(color: Colors.grey, fontSize: 12.sp),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 5.h),
-                  Container(
-                    width: 35.w,
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: CircleBorder(),
+              child: Container(
+                width: 35.w,
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: CircleBorder(),
+                ),
+                child: Center(
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.favorite_border_outlined,
+                      size: 20.r,
                     ),
-                    child: Center(
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.favorite_border_outlined,
-                          size: 20.r,
-                        ),
-                        color: Colors.teal,
-                        onPressed: () {},
-                      ),
-                    ),
+                    color: Colors.teal,
+                    onPressed: () {},
                   ),
-                ],
+                ),
               ),
             ),
           ],

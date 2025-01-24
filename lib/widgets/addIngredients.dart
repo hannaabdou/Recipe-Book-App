@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/utils/colors.dart';
-import '../utils/UploadPhotoFunction.dart';
+import 'UploadPhotoFunction.dart';
 
 class AddIngredients extends StatefulWidget {
   const AddIngredients({Key? key}) : super(key: key);

@@ -26,15 +26,15 @@ class CustomStepCard extends StatelessWidget {
             Text(
               'Step ${stepNumber.toString()}',
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.h),
+            // SizedBox(height: 2.h),
             Text(
               description,
               style: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 10.sp,
                 color: Colors.grey,
               ),
             ),
