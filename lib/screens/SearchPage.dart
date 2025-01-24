@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_book_app/screens/SearchPage.dart';
+import 'package:recipe_book_app/screens/HomePage.dart';
 import 'package:recipe_book_app/screens/savedrecipe.dart';
 import '../services/api_service.dart'; // Import the ApiService
 import '../models/recipe.dart'; // Import the Recipe model
 
-class HomePage extends StatefulWidget {
+class SearchPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SearchPageState extends State<SearchPage> {
   final ApiService _apiService = ApiService();
-  List<Recipe> _recipes = [];
+  List<Recipe> _searchResults = [];
+  final TextEditingController _searchController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchRecipes();
-  }
-
-  Future<void> _fetchRecipes() async {
+  Future<void> _searchRecipes(String query) async {
     try {
       final recipes = await _apiService.fetchRecipes();
       setState(() {
-        _recipes = recipes;
+        _searchResults = recipes
+            .where((recipe) =>
+                recipe.strMeal.toLowerCase().contains(query.toLowerCase()))
+            .toList();
       });
     } catch (e) {
-      print("Failed to load recipes: $e");
+      print("Failed to search recipes: $e");
     }
   }
 
@@ -34,24 +32,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Search Recipes'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hello Hanna', style: TextStyle(fontSize: 24)),
+            TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search recipe',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (query) {
+                _searchRecipes(query);
+              },
+            ),
             SizedBox(height: 20),
-            Text('What are you cooking today?', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 20),
-            Text('Recent Search',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Expanded(
               child: ListView.builder(
-                itemCount: _recipes.length,
+                itemCount: _searchResults.length,
                 itemBuilder: (context, index) {
-                  final recipe = _recipes[index];
+                  final recipe = _searchResults[index];
                   return ListTile(
                     title: Text(recipe.strMeal),
                     onTap: () {
@@ -65,16 +67,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: 1,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
         ],
         onTap: (index) {
-          if (index == 1) {
+          if (index == 0) {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SearchPage()));
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           } else if (index == 2) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SavedRecipesPage()));

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/screens/splashScreen.dart';
+import 'screens/HomePage.dart';
+import 'screens/SearchPage.dart';
+import 'screens/RecipeDetailsPage.dart';
+import 'screens/savedrecipe.dart';
 
 import 'Test_Page.dart';
 

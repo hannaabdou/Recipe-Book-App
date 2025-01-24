@@ -1,16 +1,13 @@
 class Recipe {
-  final String id;
-  final String title;
-  final String image;
+  final String idMeal;
+  final String strMeal;
 
-  Recipe({required this.id, required this.title, required this.image});
+  Recipe({required this.idMeal, required this.strMeal});
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
-      id: json['idMeal'],
-      title: json['strMeal'],
-      image: json['strMealThumb'],
+      idMeal: json['idMeal'],
+      strMeal: json['strMeal'],
     );
   }
 }
-
