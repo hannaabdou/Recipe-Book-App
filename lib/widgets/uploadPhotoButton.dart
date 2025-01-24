@@ -5,6 +5,25 @@ import 'package:recipe_book_app/widgets/customTextStyle.dart';
 import '../utils/UploadPhotoFunction.dart';
 
 class uploadPhotoButton extends StatefulWidget {
+  final String label;
+  final double labelSize;
+  final String text;
+  final double textSize;
+  final double width;
+  final double height;
+  final double iconSize;
+
+  uploadPhotoButton({
+    Key? key,
+    this.label = 'Photo',
+    this.text = 'Choose From Device',
+    this.labelSize = 10,
+    this.width = double.infinity,
+    this.height = 110,
+    this.iconSize = 46,
+    this.textSize = 16,
+  }) : super(key: key);
+
   @override
   _uploadPhotoButtonState createState() => _uploadPhotoButtonState();
 }
@@ -28,15 +47,15 @@ class _uploadPhotoButtonState extends State<uploadPhotoButton> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           customTextStyle(
-            text: 'Photo',
-            textSize: 10.sp,
+            text: widget.label,
+            textSize: widget.labelSize.sp,
             textFamily: 'Poppins-SemiBold',
             textColor: Colors.black,
           ),
-          SizedBox(height: 5.h), // مسافة بين النص والحقل
+          SizedBox(height: 2.h), // مسافة بين النص والحقل
           Container(
-            width: double.infinity, // عرض كامل للـ Container
-            height: 110.h, // ارتفاع الـ Container
+            width: widget.width, // عرض كامل للـ Container
+            height: widget.height.h, // ارتفاع الـ Container
             decoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(
@@ -55,13 +74,13 @@ class _uploadPhotoButtonState extends State<uploadPhotoButton> {
                       children: [
                         Icon(
                           Icons.photo,
-                          size: 46.r,
+                          size: widget.iconSize.r,
                           color: Colors.grey.shade600,
                         ),
                         customTextStyle(
-                          text: 'Choose From Device',
+                          text: widget.text,
                           textFamily: 'Poppins-SemiBold',
-                          textSize: 16.sp,
+                          textSize: widget.textSize.sp,
                           textColor: Colors.grey.shade600,
                         ),
                       ],

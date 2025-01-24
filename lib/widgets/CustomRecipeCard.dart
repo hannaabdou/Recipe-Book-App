@@ -13,7 +13,7 @@ class CustomRecipeCard extends StatelessWidget {
   const CustomRecipeCard({
     Key? key,
     required this.imageUrl,
-    required this.title,
+    this.title = '',
     // required this.chefName,
     required this.rating,
     required this.cookingTime,

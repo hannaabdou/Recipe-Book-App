@@ -5,6 +5,9 @@ import 'package:recipe_book_app/widgets/CustomTextField.dart';
 import 'package:recipe_book_app/widgets/customTextStyle.dart';
 import 'package:recipe_book_app/widgets/uploadPhotoButton.dart';
 
+import 'addIngredients.dart';
+import 'addSteps.dart';
+
 class AddRecipeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class AddRecipeBottomSheet extends StatelessWidget {
           ),
           CustomTextField(
             label: 'Name',
-            hintText: 'Ex: Traditional spare ribs baked',
+            hintText: 'Enter Recipe Name',
             labelSize: 10.sp,
             labelColor: Colors.black,
             labelFontWeight: FontWeight.bold,
@@ -37,27 +40,16 @@ class AddRecipeBottomSheet extends StatelessWidget {
           SizedBox(height: 10.h),
           CustomTextField(
             label: 'Description',
+            hintText: 'Enter Recipe Description',
             labelColor: Colors.black,
             labelSize: 10.sp,
             labelFontWeight: FontWeight.bold,
             maxLines: 5,
           ),
           SizedBox(height: 10.h),
-          CustomTextField(
-            label: 'Ingredients',
-            labelColor: Colors.black,
-            labelSize: 10.sp,
-            labelFontWeight: FontWeight.bold,
-            maxLines: 5,
-          ),
+          AddIngredients(),
           SizedBox(height: 10.h),
-          CustomTextField(
-            label: 'Steps',
-            labelColor: Colors.black,
-            labelSize: 10.sp,
-            labelFontWeight: FontWeight.bold,
-            maxLines: 5,
-          ),
+          addSteps(),
           SizedBox(height: 10.h),
           uploadPhotoButton(),
           SizedBox(height: 10.h),

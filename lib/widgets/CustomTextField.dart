@@ -12,10 +12,12 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final ValueChanged<String>? onChanged;
   final TextEditingController? controller;
+  final double? width; // عرض الحقل
+  final double? height; // طول الحقل
 
   const CustomTextField({
     Key? key,
-    required this.label,
+    this.label = '',
     this.hintText,
     this.onChanged,
     this.controller,
@@ -24,6 +26,8 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.labelSize = 16,
     this.labelFamily,
+    this.width, // تخصيص العرض
+    this.height, // تخصيص الطول
   }) : super(key: key);
 
   @override
@@ -40,30 +44,33 @@ class CustomTextField extends StatelessWidget {
             fontFamily: labelFamily,
           ),
         ),
-        SizedBox(height: 5.h), // مسافة بين النص والحقل
-        TextField(
-          cursorColor: AppColors.primaryColor,
-          controller: controller,
-          onChanged: onChanged,
-          maxLines: maxLines,
-          style: const TextStyle(
-            color: Colors.black,
-          ),
-          // النص داخل الحقل
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: const TextStyle(color: Colors.grey),
-            filled: true,
-            fillColor: Colors.transparent,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.grey),
+        SizedBox(height: 2.h), // مسافة بين النص والحقل
+        SizedBox(
+          width: width, // عرض الحقل
+          height: height, // طول الحقل
+          child: TextField(
+            cursorColor: AppColors.primaryColor,
+            controller: controller,
+            onChanged: onChanged,
+            maxLines: maxLines,
+            style: const TextStyle(
+              color: Colors.black,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: AppColors.primaryColor,
-                width: 2.5,
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: const TextStyle(color: Colors.grey),
+              filled: true,
+              fillColor: Colors.transparent,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: AppColors.primaryColor,
+                  width: 2.5,
+                ),
               ),
             ),
           ),
