@@ -35,13 +35,8 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20), // حجم الانحناء
                 child: Image.network(
-<<<<<<< HEAD
                   widget
                       .imageUrl, // استخدام Image.network لعرض الصورة من الإنترنت
-=======
-                  widget.imageUrl,
-                  // استخدام Image.network لعرض الصورة من الإنترنت
->>>>>>> cb29758e86ab76c266fce4cbd1461d4ad257ddf3
                   fit: BoxFit.cover, // ملائمة الصورة لاحتلال المساحة كاملة
                 ),
               ),

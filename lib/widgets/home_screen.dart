@@ -6,7 +6,7 @@ import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'package:recipe_book_app/widgets/custom_filter.dart';
 import '../services/api_service.dart';
 import 'custom_app_bar.dart';
-import '../models/recipe.dart'; // تأكد من أنك تستورد موديل الـ Recipe هنا.
+import '../models/recipe.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<String> filters = [
@@ -29,14 +29,29 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedFilterIndex = 0;
-
   final MealService _mealService = MealService();
   late Future<List<Recipe>> _mealsFuture;
 
   @override
   void initState() {
     super.initState();
-    _mealsFuture = _mealService.fetchMealsByCategory('Dessert');
+    _mealsFuture = _fetchMealsByFilter(widget.filters[_selectedFilterIndex]);
+  }
+
+  Future<List<Recipe>> _fetchMealsByFilter(String filter) async {
+    if (filter == 'All') {
+      // Fetch all meals (you might need to implement this in your API service)
+      return _mealService.fetchMealsByCategory('Dessert'); // Placeholder
+    } else {
+      return _mealService.fetchMealsByCategory(filter);
+    }
+  }
+
+  void _onFilterChanged(int index) {
+    setState(() {
+      _selectedFilterIndex = index;
+      _mealsFuture = _fetchMealsByFilter(widget.filters[index]);
+    });
   }
 
   @override
@@ -88,16 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
               filters: widget.filters,
               paddingHorizontal: 7.w,
               paddingVertical: 2.h,
-              onFilterChanged: (index) {
-                setState(() {
-                  _selectedFilterIndex = index;
-                });
-              },
+              onFilterChanged: _onFilterChanged,
             ),
             SizedBox(height: 16.h),
             Flexible(
               child: FutureBuilder<List<Recipe>>(
-                future: _mealsFuture, // استدعاء الـ API
+                future: _mealsFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
