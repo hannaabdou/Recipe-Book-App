@@ -25,7 +25,7 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.targetPage,
-      child: Container(
+      child: SizedBox(
         width: 370.w,
         height: 200.h,
         child: Stack(
@@ -35,7 +35,8 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20), // حجم الانحناء
                 child: Image.network(
-                  widget.imageUrl,  // استخدام Image.network لعرض الصورة من الإنترنت
+                  widget
+                      .imageUrl, // استخدام Image.network لعرض الصورة من الإنترنت
                   fit: BoxFit.cover, // ملائمة الصورة لاحتلال المساحة كاملة
                 ),
               ),

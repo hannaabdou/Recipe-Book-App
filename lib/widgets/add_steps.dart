@@ -89,7 +89,7 @@ class _AddStepsState extends State<AddSteps> {
               ],
             ),
           );
-        }).toList(),
+        }),
 
         // زر الإضافة
         ElevatedButton.icon(

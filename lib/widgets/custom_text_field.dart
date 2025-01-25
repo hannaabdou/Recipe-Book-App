@@ -16,7 +16,7 @@ class CustomTextField extends StatelessWidget {
   final double? height; // طول الحقل
 
   const CustomTextField({
-    Key? key,
+    super.key,
     this.label = '',
     this.hintText,
     this.onChanged,
@@ -28,7 +28,7 @@ class CustomTextField extends StatelessWidget {
     this.labelFamily,
     this.width, // تخصيص العرض
     this.height, // تخصيص الطول
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

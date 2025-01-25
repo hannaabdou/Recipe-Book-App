@@ -11,7 +11,7 @@ import '../widgets/list_step.dart';
 class RecipeDetailsPage extends StatefulWidget {
   final RecipeBox recipe;
 
-  const RecipeDetailsPage({Key? key, required this.recipe}) : super(key: key);
+  const RecipeDetailsPage({super.key, required this.recipe});
 
   @override
   _RecipeDetailsPageState createState() => _RecipeDetailsPageState();

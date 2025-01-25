@@ -8,16 +8,16 @@ class CustomBottomNavBar extends StatelessWidget {
   final Function(int) onItemSelected;
 
   const CustomBottomNavBar({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onItemSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: CurvedBottomBarPainter(),
-      child: Container(
+      child: SizedBox(
         height: 60.h, // تكييف الارتفاع
         child: Stack(
           children: [

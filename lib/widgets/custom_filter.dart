@@ -9,12 +9,12 @@ class CustomFilter extends StatefulWidget {
   final ValueChanged<int> onFilterChanged; // لإرسال الإشارة عند تغيير الفلتر
 
   const CustomFilter({
-    Key? key,
+    super.key,
     required this.filters,
     required this.onFilterChanged,
     this.paddingHorizontal = 16,
     this.paddingVertical = 7,
-  }) : super(key: key);
+  });
 
   @override
   _CustomFilterState createState() => _CustomFilterState();
@@ -68,7 +68,7 @@ class _CustomFilterState extends State<CustomFilter> {
                   fontWeight: FontWeight.bold,
                   color: _selectedIndex == index
                       ? Colors.white
-                      : Color(0xFFFF71B1A1),
+                      : Color(0xffff71b1a1),
                 ),
               ),
             ),

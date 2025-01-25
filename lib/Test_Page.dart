@@ -5,6 +5,8 @@ import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'models/recipe.dart';
 
 class Test extends StatefulWidget {
+  const Test({super.key});
+
   @override
   _TestState createState() => _TestState();
 }

@@ -8,7 +8,8 @@ import 'package:recipe_book_app/widgets/recent_search.dart';
 
 import '../screens/recipe_details_page.dart';
 
-Widget buildRecentSearches(List<RecentSearch> recentSearches, TextEditingController _searchController) {
+Widget buildRecentSearches(
+    List<RecentSearch> recentSearches, TextEditingController searchController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -30,7 +31,7 @@ Widget buildRecentSearches(List<RecentSearch> recentSearches, TextEditingControl
             subtitle: Text(recentSearches[index].category),
             onTap: () {
               final selectedRecipe = StaticRecipe.recipes.firstWhere(
-                    (recipe) => recipe.name == recentSearches[index].name,
+                (recipe) => recipe.name == recentSearches[index].name,
                 orElse: () => RecipeBox.empty(),
               );
 
@@ -38,7 +39,8 @@ Widget buildRecentSearches(List<RecentSearch> recentSearches, TextEditingControl
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RecipeDetailsPage(recipe: selectedRecipe),
+                    builder: (context) =>
+                        RecipeDetailsPage(recipe: selectedRecipe),
                   ),
                 );
               } else {

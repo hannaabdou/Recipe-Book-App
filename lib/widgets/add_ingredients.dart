@@ -5,7 +5,7 @@ import 'package:recipe_book_app/utils/colors.dart';
 import 'upload_photo_function.dart';
 
 class AddIngredients extends StatefulWidget {
-  const AddIngredients({Key? key}) : super(key: key);
+  const AddIngredients({super.key});
 
   @override
   State<AddIngredients> createState() => _AddIngredientsState();
@@ -124,7 +124,7 @@ class _AddIngredientsState extends State<AddIngredients> {
               ],
             ),
           );
-        }).toList(),
+        }),
 
         // زر الإضافة
         ElevatedButton.icon(

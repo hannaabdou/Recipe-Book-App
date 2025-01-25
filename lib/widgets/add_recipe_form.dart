@@ -8,6 +8,8 @@ import 'add_ingredients.dart';
 import 'add_steps.dart';
 
 class AddRecipeForm extends StatelessWidget {
+  const AddRecipeForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ListView(

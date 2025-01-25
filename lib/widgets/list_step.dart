@@ -6,7 +6,7 @@ import '../data/step_box.dart';
 class ListStep extends StatelessWidget {
   final List<StepBox> steps;
 
-  const ListStep({Key? key, required this.steps}) : super(key: key);
+  const ListStep({super.key, required this.steps});
 
   @override
   Widget build(BuildContext context) {

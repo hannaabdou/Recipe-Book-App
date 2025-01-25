@@ -4,10 +4,8 @@ import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
 import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'package:recipe_book_app/widgets/custom_filter.dart';
-import 'package:recipe_book_app/screens/recipe_details_page.dart';
 import '../services/api_service.dart';
 import 'custom_app_bar.dart';
-import '../data/recipe_box.dart';
 import '../models/recipe.dart'; // تأكد من أنك تستورد موديل الـ Recipe هنا.
 
 class HomeScreen extends StatefulWidget {
