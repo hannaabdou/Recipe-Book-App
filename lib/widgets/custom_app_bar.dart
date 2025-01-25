@@ -38,7 +38,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 0,
-      leading: showBackIcon == true // شرط التأكد من إظهار أيقونة الباك
+      automaticallyImplyLeading: showBackIcon,
+      // التحكم في زر الرجوع
+      leading: showBackIcon
           ? IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () {
@@ -47,7 +49,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       actions: [
-        if (showMoreIcon) // شرط إظهار أو إخفاء الأيقونة
+        if (showMoreIcon)
           IconButton(
             icon: Icon(Icons.more_vert, color: Colors.black),
             onPressed: onPressed,
