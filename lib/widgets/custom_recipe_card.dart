@@ -34,9 +34,9 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
             Positioned.fill(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20), // حجم الانحناء
-                child: Image.asset(
-                  widget.imageUrl,
-                  fit: BoxFit.cover,
+                child: Image.network(
+                  widget.imageUrl,  // استخدام Image.network لعرض الصورة من الإنترنت
+                  fit: BoxFit.cover, // ملائمة الصورة لاحتلال المساحة كاملة
                 ),
               ),
             ),
@@ -106,7 +106,7 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
                 child: Center(
                   child: IconButton(
                     icon: Icon(
-                      Icons.favorite_border_outlined,
+                      Icons.bookmark_border,
                       size: 20.r,
                     ),
                     color: Colors.teal,

@@ -18,9 +18,14 @@ class ListStep extends StatelessWidget {
         final step = steps[index];
         return Padding(
           padding: EdgeInsets.only(bottom: 7.h),
-          child: CustomStepCard(
-            stepNumber: step.stepNumber,
-            description: step.description,
+          child: Column(
+            children: [
+              CustomStepCard(
+                stepNumber: step.stepNumber,
+                description: step.description,
+              ),
+              Text(''),
+            ],
           ),
         );
       },

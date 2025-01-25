@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ProfileImage(),
             SizedBox(height: 5.h),
             CustomTextStyle(
-              text: 'Mohamed Abdelsatar',
+              text: 'Gust',
               textSize: 12.sp,
               textWeight: FontWeight.w900,
               textFamily: 'Poppins-SemiBold',
