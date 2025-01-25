@@ -6,6 +6,7 @@ import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'package:recipe_book_app/widgets/custom_filter.dart';
 import '../data/recipe_box.dart';
 import '../data/static_recipe.dart';
+import '../screens/recipe_details_page.dart';
 import 'custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,17 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // فلترة الوصفات بناءً على الفلتر
     List<RecipeBox> filteredRecipes;
 
     if (_selectedFilterIndex == 0) {
-      // عندما يكون الفلتر هو "All"، اعرض جميع الوصفات
       filteredRecipes = StaticRecipe.recipes;
     } else {
-      // الفلاتر الأخرى تقوم بالفلترة حسب الفئة
       filteredRecipes = StaticRecipe.recipes
           .where((recipe) =>
-              recipe.category == widget.filters[_selectedFilterIndex])
+      recipe.category == widget.filters[_selectedFilterIndex])
           .toList();
     }
 
@@ -58,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         child: Column(
-          mainAxisSize: MainAxisSize.min, // تعديل هنا لتقليل الحجم الافتراضي
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,50 +101,54 @@ class _HomeScreenState extends State<HomeScreen> {
             Flexible(
               child: SingleChildScrollView(
                 child: Align(
-                  alignment: Alignment.center, // محاذاة المحتوى في المنتصف
+                  alignment: Alignment.center,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: filteredRecipes.isEmpty
                         ? [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height /
-                                  2, // ضبط ارتفاع لتحديد المسافة
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'assets/IMG/Icons/empty.png',
-                                    width: 130.w,
-                                    height: 130.h,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  SizedBox(height: 20.h),
-                                  CustomTextStyle(
-                                    text:
-                                        'There are no Recipes of ${widget.filters[_selectedFilterIndex]}',
-                                    textFamily: 'Poppins-SemiBold',
-                                    textSize: 16.sp,
-                                    textColor: Colors.black,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/IMG/Icons/empty.png',
+                              width: 130.w,
+                              height: 130.h,
+                              fit: BoxFit.cover,
                             ),
-                          ]
+                            SizedBox(height: 20.h),
+                            CustomTextStyle(
+                              text:
+                              'There are no Recipes of ${widget.filters[_selectedFilterIndex]}',
+                              textFamily: 'Poppins-SemiBold',
+                              textSize: 16.sp,
+                              textColor: Colors.black,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]
                         : filteredRecipes.map((recipe) {
-                            return Padding(
-                              padding: EdgeInsets.only(bottom: 7.h),
-                              child: CustomRecipeCard(
-                                title: recipe.name,
-                                imageUrl: recipe.imageUrl,
-                                targetPage: () {
-                                  // هنا قم بتحديد وظيفة الانتقال إلى صفحة الوصفة
-                                },
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 7.h),
+                        child: CustomRecipeCard(
+                          title: recipe.name,
+                          imageUrl: recipe.imageUrl,
+                          targetPage: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RecipeDetailsPage(recipe: recipe),
                               ),
                             );
-                          }).toList(),
+                          },
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),

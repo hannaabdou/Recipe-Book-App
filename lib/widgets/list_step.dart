@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/widgets/custom_step_card.dart';
+import '../data/step_box.dart';
 
 class ListStep extends StatelessWidget {
-  final List<Map<String, dynamic>> steps;
+  final List<StepBox> steps;
 
   const ListStep({Key? key, required this.steps}) : super(key: key);
 
@@ -14,9 +16,12 @@ class ListStep extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final step = steps[index];
-        return CustomStepCard(
-          stepNumber: step['stepNumber'],
-          description: step['description'],
+        return Padding(
+          padding: EdgeInsets.only(bottom: 7.h),
+          child: CustomStepCard(
+            stepNumber: step.stepNumber,
+            description: step.description,
+          ),
         );
       },
     );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../data/ingredient_box.dart';
 import 'custom_ingredient_card.dart';
 
 class ListIngredient extends StatelessWidget {
-  final List<Map<String, dynamic>> ingredients;
+  final List<IngredientBox> ingredients;
 
   const ListIngredient({Key? key, required this.ingredients}) : super(key: key);
 
@@ -15,9 +16,12 @@ class ListIngredient extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final ingredient = ingredients[index];
-        return CustomIngredientCard(
-          imageUrl: ingredient['imageUrl'],
-          ingredientName: ingredient['name'],
+        return Padding(
+          padding: EdgeInsets.only(bottom: 7.h),
+          child: CustomIngredientCard(
+            imageUrl: ingredient.imageUrl,
+            ingredientName: ingredient.name,
+          ),
         );
       },
     );
