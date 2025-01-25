@@ -35,8 +35,13 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20), // حجم الانحناء
                 child: Image.network(
+<<<<<<< HEAD
                   widget
                       .imageUrl, // استخدام Image.network لعرض الصورة من الإنترنت
+=======
+                  widget.imageUrl,
+                  // استخدام Image.network لعرض الصورة من الإنترنت
+>>>>>>> cb29758e86ab76c266fce4cbd1461d4ad257ddf3
                   fit: BoxFit.cover, // ملائمة الصورة لاحتلال المساحة كاملة
                 ),
               ),
@@ -62,13 +67,16 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
             Positioned(
               bottom: 40,
               left: 20,
-              child: CustomTextStyle(
-                text: widget.title,
-                textFamily: 'Poppins-SemiBold',
-                textLetterSpacing: 1.w,
-                textWordSpacing: 3.w,
-                textSize: 16.sp,
-                textColor: Colors.white,
+              child: SizedBox(
+                width: 200.w,
+                child: CustomTextStyle(
+                  text: widget.title,
+                  textFamily: 'Poppins-SemiBold',
+                  textLetterSpacing: 1.w,
+                  textWordSpacing: 3.w,
+                  textSize: 16.sp,
+                  textColor: Colors.white,
+                ),
               ),
             ),
             Positioned(
