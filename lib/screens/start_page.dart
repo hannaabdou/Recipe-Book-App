@@ -21,15 +21,13 @@ class StartPage extends StatelessWidget {
             Column(
               children: [
                 Image.asset(
-                  'assets/IMG/Icons/Logo 2.png', // Replace with your logo path
-                  width: 80.w, // Adjust logo size
+                  'assets/IMG/Icons/Logo 2.png',
+                  width: 80.w,
                   height: 80.h,
                 ),
                 SizedBox(height: 7.h),
-                // Text
                 Text(
                   '100K+ Premium Recipe ',
-                  // Replace with your app name or slogan
                   style: TextStyle(
                     fontSize: 17.sp,
                     decoration: TextDecoration.none,
@@ -42,7 +40,7 @@ class StartPage extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Recipe Rleam', // Replace with your app name or slogan
+                  'Recipe Realm',
                   style: TextStyle(
                     fontSize: 30.sp,
                     decoration: TextDecoration.none,
@@ -52,7 +50,6 @@ class StartPage extends StatelessWidget {
                 ),
                 Text(
                   'Simple way to find Tasty Recipe',
-                  // Replace with your app name or slogan
                   style: TextStyle(
                     fontSize: 10.sp,
                     decoration: TextDecoration.none,
@@ -74,14 +71,32 @@ class StartPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInPage(),
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 600),
+                    // المدة لجعل الأنيميشن أبطأ
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        SignInPage(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0.0); // الانتقال من اليمين
+                      const end = Offset.zero;
+                      const curve = Curves.easeInOut;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+                      var offsetAnimation = animation.drive(tween);
+
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
                   ),
                 );
               },
             ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -9,17 +9,76 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeInAnimation;
+  late Animation<Offset> _moveUpAnimation;
+
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 3),
+      // زيادة المدة إلى 5 ثوانٍ (يمكنك تعديل هذه القيمة حسب الحاجة)
+      vsync: this,
+    );
 
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => StartPage()),
-      );
-    });
+    _fadeInAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+
+    _moveUpAnimation =
+        Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0)).animate(
+      CurvedAnimation(
+          parent: _controller,
+          curve:
+              Curves.easeInOut), // تغيير إلى easeInOut لجعل الحركة أكثر سلاسة
+    );
+
+    // Start the animations when the splash screen is shown
+    _controller.forward();
+
+    // Navigate after animation completes
+    _controller.addStatusListener(
+      (status) {
+        if (status == AnimationStatus.completed) {
+          // After the animation is completed, navigate to the next page with fade-in animation
+          Future.delayed(
+            Duration(milliseconds: 3000),
+            () {
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      StartPage(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    const curve = Curves.easeInOut;
+
+                    // Define opacity animation
+                    var opacityAnimation = animation.drive(
+                      CurveTween(curve: curve),
+                    );
+
+                    return FadeTransition(
+                      opacity: opacityAnimation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
+            },
+          );
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -28,36 +87,34 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Background Image
           Image.asset(
-            'assets/IMG/Wallpaper.png', // Replace with your image path
+            'assets/IMG/Wallpaper.png', // خلفية
             fit: BoxFit.cover,
           ),
-          // Content in the center
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Logo
-              Image.asset(
-                'assets/IMG/Icons/Logo 2.png', // Replace with your logo path
-                width: 100.w, // Adjust logo size
-                height: 100.h,
-                fit: BoxFit.fill,
+          FadeTransition(
+            opacity: _fadeInAnimation,
+            child: SlideTransition(
+              position: _moveUpAnimation,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/IMG/Icons/Logo 2.png', // شعار
+                    width: 100.w,
+                    height: 100.h,
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    '100K+ Premium Recipe ',
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 10.h,
-              ),
-              // Text
-              Text(
-                '100K+ Premium Recipe ', // Replace with your app name or slogan
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+            ),
           ),
         ],
       ),

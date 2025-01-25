@@ -4,14 +4,24 @@ import 'package:recipe_book_app/widgets/custom_text_style.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final VoidCallback onPressed;
+  final double titleSize;
+  final String titleFamily;
+  final double textWordSpacing;
+  final double textLetterSpacing;
   final bool showMoreIcon; // متغير للتحكم في إظهار أو إخفاء الأيقونة
+  final bool showBackIcon;
+  final VoidCallback onPressed;
 
   const CustomAppBar({
     super.key,
     required this.onPressed,
     required this.title,
-    this.showMoreIcon = true, // قيمة افتراضية تظهر الأيقونة
+    this.titleSize = 10,
+    this.titleFamily = 'Poppins-SemiBold',
+    this.showMoreIcon = false,
+    this.showBackIcon = true,
+    this.textWordSpacing = 0,
+    this.textLetterSpacing = 0, // قيمة افتراضية تظهر الأيقونة
   });
 
   @override
@@ -19,19 +29,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: CustomTextStyle(
         text: title,
-        textFamily: 'Poppins-SemiBold',
-        textSize: 10.sp,
+        textFamily: titleFamily,
+        textSize: titleSize.sp,
+        textWordSpacing: textWordSpacing.sp,
+        textLetterSpacing: textLetterSpacing.sp,
         textColor: Colors.black,
       ),
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 0,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.black),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
+      leading: showBackIcon == true // شرط التأكد من إظهار أيقونة الباك
+          ? IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            )
+          : null,
       actions: [
         if (showMoreIcon) // شرط إظهار أو إخفاء الأيقونة
           IconButton(
