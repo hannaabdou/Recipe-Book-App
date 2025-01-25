@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
-
+import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
+import 'package:recipe_book_app/widgets/custom_filter.dart';
+import '../data/recipe_box.dart';
+import '../data/static_recipe.dart';
 import 'custom_app_bar.dart';
-import 'custom_filter.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<String> filters = [
+    'All',
     'Breakfast',
     'Lunch',
     'Dinner',
@@ -29,6 +32,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // فلترة الوصفات بناءً على الفلتر
+    List<RecipeBox> filteredRecipes;
+
+    if (_selectedFilterIndex == 0) {
+      // عندما يكون الفلتر هو "All"، اعرض جميع الوصفات
+      filteredRecipes = StaticRecipe.recipes;
+    } else {
+      // الفلاتر الأخرى تقوم بالفلترة حسب الفئة
+      filteredRecipes = StaticRecipe.recipes
+          .where((recipe) =>
+              recipe.category == widget.filters[_selectedFilterIndex])
+          .toList();
+    }
+
     return Scaffold(
       appBar: CustomAppBar(
         onPressed: () {},
@@ -39,8 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: 'Home Page',
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         child: Column(
+          mainAxisSize: MainAxisSize.min, // تعديل هنا لتقليل الحجم الافتراضي
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,12 +95,62 @@ class _HomeScreenState extends State<HomeScreen> {
               paddingVertical: 2.h,
               onFilterChanged: (index) {
                 setState(() {
-                  _selectedFilterIndex = index; // تغيير الفلتر
+                  _selectedFilterIndex = index;
                 });
               },
             ),
             SizedBox(height: 16.h),
-
+            Flexible(
+              child: SingleChildScrollView(
+                child: Align(
+                  alignment: Alignment.center, // محاذاة المحتوى في المنتصف
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: filteredRecipes.isEmpty
+                        ? [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height /
+                                  2, // ضبط ارتفاع لتحديد المسافة
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/IMG/Icons/empty.png',
+                                    width: 130.w,
+                                    height: 130.h,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 20.h),
+                                  CustomTextStyle(
+                                    text:
+                                        'There are no Recipes of ${widget.filters[_selectedFilterIndex]}',
+                                    textFamily: 'Poppins-SemiBold',
+                                    textSize: 16.sp,
+                                    textColor: Colors.black,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ]
+                        : filteredRecipes.map((recipe) {
+                            return Padding(
+                              padding: EdgeInsets.only(bottom: 7.h),
+                              child: CustomRecipeCard(
+                                title: recipe.name,
+                                imageUrl: recipe.imageUrl,
+                                targetPage: () {
+                                  // هنا قم بتحديد وظيفة الانتقال إلى صفحة الوصفة
+                                },
+                              ),
+                            );
+                          }).toList(),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

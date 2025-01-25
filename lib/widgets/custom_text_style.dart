@@ -8,6 +8,7 @@ class CustomTextStyle extends StatelessWidget {
   final double textLetterSpacing;
   final FontWeight textWeight;
   final Color textColor;
+  final TextAlign textAlign;
 
   const CustomTextStyle({
     super.key,
@@ -18,12 +19,14 @@ class CustomTextStyle extends StatelessWidget {
     required this.textColor,
     this.textWordSpacing = 0,
     this.textLetterSpacing = 0,
+    this.textAlign = TextAlign.start,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
         fontSize: textSize,
         fontFamily: textFamily,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_book_app/widgets/custom_text_style.dart';
 
 class CustomRecipeCard extends StatefulWidget {
   final String title;
@@ -60,17 +61,13 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
             Positioned(
               bottom: 40,
               left: 20,
-              child: SizedBox(
-                width: 170.w,
-                height: 40.h,
-                child: Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+              child: CustomTextStyle(
+                text: widget.title,
+                textFamily: 'Poppins-SemiBold',
+                textLetterSpacing: 1.w,
+                textWordSpacing: 3.w,
+                textSize: 16.sp,
+                textColor: Colors.white,
               ),
             ),
             Positioned(
