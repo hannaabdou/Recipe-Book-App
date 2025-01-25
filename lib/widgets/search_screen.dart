@@ -3,6 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/utils/colors.dart';
 import 'package:recipe_book_app/widgets/custom_app_bar.dart';
 import 'package:recipe_book_app/widgets/custom_text_style.dart';
+import 'package:recipe_book_app/data/static_recipe.dart';
+import 'package:recipe_book_app/data/recipe_box.dart';
+
+// إنشاء فئة لتخزين Recent Search
+class RecentSearch {
+  final String name;
+  final String category;
+
+  RecentSearch({required this.name, required this.category});
+}
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -13,54 +23,32 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
-  List<String> _searchResults = [];
-  final List<String> _recentSearches = [
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 4'
-  ]; // قائمة عمليات البحث الأخيرة
-  final List<String> _allItems = [
-    'Recipe 1',
-    'Recipe 2',
-    'Recipe 3',
-    'Recipe 4'
-  ]; // عينة من البيانات
+  List<RecipeBox> _searchResults = []; // نتائج البحث
+  final List<RecentSearch> _recentSearches = []; // تخزين عمليات البحث الأخيرة
 
   void _performSearch(String query) {
     setState(() {
       if (query.isEmpty) {
         _searchResults.clear();
       } else {
-        _searchResults = _allItems
-            .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+        // فلترة الوصفات بناءً على الاسم والفئة
+        _searchResults = StaticRecipe.recipes
+            .where((recipe) =>
+                recipe.name.toLowerCase().contains(query.toLowerCase()) ||
+                recipe.category.toLowerCase().contains(query.toLowerCase()))
             .toList();
       }
     });
   }
 
   void _addToRecentSearches(String query) {
-    if (!_recentSearches.contains(query)) {
+    final existingSearch = _recentSearches.firstWhere(
+      (search) => search.name == query,
+      orElse: () => RecentSearch(name: '', category: ''),
+    );
+    if (existingSearch.name.isEmpty) {
       setState(() {
-        _recentSearches.add(query);
+        _recentSearches.add(RecentSearch(name: query, category: 'Unknown'));
       });
     }
   }
@@ -120,7 +108,6 @@ class _SearchScreenState extends State<SearchScreen> {
               cursorColor: AppColors.primaryColor,
               cursorWidth: 2, // تغيير سماكة الكورسول
             ),
-
             SizedBox(height: 10.h),
 
             // Recent Searches
@@ -146,10 +133,12 @@ class _SearchScreenState extends State<SearchScreen> {
                           itemCount: _recentSearches.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text(_recentSearches[index]),
+                              title: Text(_recentSearches[index].name),
+                              subtitle: Text(_recentSearches[index].category),
                               onTap: () {
-                                _searchController.text = _recentSearches[index];
-                                _performSearch(_recentSearches[index]);
+                                _searchController.text =
+                                    _recentSearches[index].name;
+                                _performSearch(_recentSearches[index].name);
                               },
                             );
                           },
@@ -167,7 +156,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       itemCount: _searchResults.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          title: Text(_searchResults[index]),
+                          title: Text(_searchResults[index].name),
+                          subtitle: Text(_searchResults[index].category),
                         );
                       },
                     ),
