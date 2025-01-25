@@ -18,7 +18,7 @@ class AddRecipePage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
-        child: AddIngredients(),
+        child: AddRecipeForm(),
       ),
     );
   }
