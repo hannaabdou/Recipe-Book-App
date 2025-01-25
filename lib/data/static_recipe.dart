@@ -1,3 +1,4 @@
+/*
 import 'package:recipe_book_app/data/recipe_box.dart';
 import 'package:recipe_book_app/data/step_box.dart';
 
@@ -246,7 +247,8 @@ class StaticRecipe {
         // Add more steps if needed
       ],
     ),
-    /*RecipeBox(
+    */
+/*RecipeBox(
       id: 6,
       name: "Vegetable Stir-fry",
       description: "Healthy mix of stir-fried vegetables with soy sauce.",
@@ -350,8 +352,10 @@ class StaticRecipe {
       description: "Traditional apple pie with a flaky crust.",
       category: "Dessert",
       imageUrl: "assets/IMG/Recipe Photos/Apple Pie.jpeg",
-    ),*/
-    /*RecipeBox(
+    ),*//*
+
+    */
+/*RecipeBox(
       id: 21,
       name: "Fish and Chips",
       description: "Crispy fried fish served with golden fries.",
@@ -500,6 +504,8 @@ class StaticRecipe {
       name: "Chicken Wings",
       description: "Crispy and spicy chicken wings with dip.",
       imageUrl: "assets/images/chicken_wings.jpg",
-    ),*/
+    ),*//*
+
   ];
 }
+*/

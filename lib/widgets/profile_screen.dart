@@ -20,10 +20,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        onPressed: () {},
+
         titleSize: 14,
         textWordSpacing: 3,
         textLetterSpacing: 1,
+        showMoreIcon: true,
+        onPressed: () {},
         showBackIcon: false,
         title: 'Profile Page',
       ),

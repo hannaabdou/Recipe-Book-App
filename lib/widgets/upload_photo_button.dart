@@ -6,44 +6,45 @@ import 'upload_photo_function.dart';
 
 class UploadPhotoButton extends StatefulWidget {
   final String label;
-  final double labelSize;
   final String text;
+  final double labelSize;
   final double textSize;
   final double width;
   final double height;
   final double iconSize;
 
   const UploadPhotoButton({
-    super.key,
+    Key? key,
     this.label = 'Photo',
     this.text = 'Choose From Device',
-    this.labelSize = 10,
+    this.labelSize = 12,
+    this.textSize = 14,
     this.width = double.infinity,
     this.height = 110,
     this.iconSize = 46,
-    this.textSize = 16,
-  });
+  }) : super(key: key);
 
   @override
-  _UploadPhotoButtonState createState() => _UploadPhotoButtonState();
+  State<UploadPhotoButton> createState() => _UploadPhotoButtonState();
 }
 
 class _UploadPhotoButtonState extends State<UploadPhotoButton> {
   File? _selectedImage;
 
+  void _pickImage() async {
+    final image = await UploadPhotoFunction.pickImageFromGallery();
+    if (image != null) {
+      setState(() {
+        _selectedImage = File(image.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        final image = await UploadPhotoFunction.pickImageFromGallery();
-        if (image != null) {
-          setState(() {
-            _selectedImage = File(image.path); // حفظ الصورة لتحديث الـ UI
-          });
-        }
-      },
+      onTap: _pickImage,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomTextStyle(
@@ -52,50 +53,42 @@ class _UploadPhotoButtonState extends State<UploadPhotoButton> {
             textFamily: 'Poppins-SemiBold',
             textColor: Colors.black,
           ),
-          SizedBox(height: 2.h), // مسافة بين النص والحقل
+          SizedBox(height: 8.h),
           Container(
-            width: widget.width, // عرض كامل للـ Container
-            height: widget.height.h, // ارتفاع الـ Container
+            width: widget.width,
+            height: widget.height.h,
             decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(
-                color: Colors.grey,
-              ),
-              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(10.r),
             ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 5.w,
-                vertical: 5.h,
+            child: _selectedImage == null
+                ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.photo,
+                  size: widget.iconSize.r,
+                  color: Colors.grey.shade600,
+                ),
+                SizedBox(height: 5.h),
+                CustomTextStyle(
+                  text: widget.text,
+                  textFamily: 'Poppins-Regular',
+                  textSize: widget.textSize.sp,
+                  textColor: Colors.grey.shade600,
+                ),
+              ],
+            )
+                : ClipRRect(
+              borderRadius: BorderRadius.circular(10.r),
+              child: Image.file(
+                _selectedImage!,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
               ),
-              child: _selectedImage == null
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.photo,
-                          size: widget.iconSize.r,
-                          color: Colors.grey.shade600,
-                        ),
-                        CustomTextStyle(
-                          text: widget.text,
-                          textFamily: 'Poppins-SemiBold',
-                          textSize: widget.textSize.sp,
-                          textColor: Colors.grey.shade600,
-                        ),
-                      ],
-                    )
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.file(
-                        _selectedImage!, // عرض الصورة المحددة
-                        fit: BoxFit.cover, // لتغطية الـ Container
-                        width: double.infinity,
-                        height: double.infinity,
-                      ),
-                    ),
             ),
-          )
+          ),
         ],
       ),
     );

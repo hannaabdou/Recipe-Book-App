@@ -17,7 +17,7 @@ class _HomePageWrapperState extends State<HomePageWrapper> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    SearchScreen(),
+    // SearchScreen(),
     ProfileScreen(),
     SettingScreen(),
   ];

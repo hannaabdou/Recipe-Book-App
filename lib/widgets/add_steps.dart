@@ -3,40 +3,57 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/utils/colors.dart';
 
 class AddSteps extends StatefulWidget {
-  const AddSteps({super.key});
+  const AddSteps({Key? key}) : super(key: key);
 
   @override
   State<AddSteps> createState() => _AddStepsState();
 }
 
 class _AddStepsState extends State<AddSteps> {
-  List<Map<String, dynamic>> ingredients = [];
+  final List<Map<String, dynamic>> steps = [];
+
+  void _addStep() {
+    setState(() {
+      steps.add({
+        'number': steps.length + 1,
+        'controller': TextEditingController(),
+      });
+    });
+  }
+
+  void _removeStep(int index) {
+    setState(() {
+      steps.removeAt(index);
+      for (int i = 0; i < steps.length; i++) {
+        steps[i]['number'] = i + 1;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ...ingredients.map((ingredient) {
+        ...steps.asMap().entries.map((entry) {
+          int index = entry.key;
+          Map<String, dynamic> step = entry.value;
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 5.h),
             child: Row(
               children: [
-                // رقم العنصر
                 CircleAvatar(
                   radius: 12.r,
                   backgroundColor: AppColors.primaryColor,
                   child: Text(
-                    '${ingredient['number']}',
+                    '${step['number']}',
                     style: TextStyle(color: Colors.white, fontSize: 10.sp),
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // حقل الإدخال
                 Expanded(
                   child: TextField(
                     cursorColor: AppColors.primaryColor,
-                    controller: ingredient['controller'],
+                    controller: step['controller'],
                     maxLines: 3,
                     decoration: InputDecoration(
                       hintText: 'Enter Step Description',
@@ -46,43 +63,30 @@ class _AddStepsState extends State<AddSteps> {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
-                        borderSide: BorderSide(
-                            color: Colors
-                                .grey), // لون الحدود عندما يكون الحقل غير مفعل
+                        borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
-                        borderSide: BorderSide(
-                            color: AppColors.primaryColor,
-                            width: 2), // لون الحدود عندما يكون الحقل مفعل
+                        borderSide:
+                        BorderSide(color: AppColors.primaryColor, width: 2),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // زر الحذف
                 InkWell(
-                  onTap: () => setState(() {
-                    // حذف العنصر
-                    ingredients.remove(ingredient);
-
-                    // إعادة الترقيم
-                    for (int i = 0; i < ingredients.length; i++) {
-                      ingredients[i]['number'] = i + 1;
-                    }
-                  }),
+                  onTap: () => _removeStep(index),
                   child: Container(
                     height: 26.h,
                     width: 26.w,
                     decoration: BoxDecoration(
-                      color: Colors.redAccent, // لون الخلفية
-                      shape: BoxShape.circle, // الشكل الدائري
+                      color: Colors.redAccent,
+                      shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      Icons.delete_outline, // أيقونة الحذف
-                      color: Colors.white, // لون الأيقونة
-                      size: 20.r, // حجم الأيقونة
+                      Icons.delete_outline,
+                      color: Colors.white,
+                      size: 20.r,
                     ),
                   ),
                 ),
@@ -90,28 +94,12 @@ class _AddStepsState extends State<AddSteps> {
             ),
           );
         }).toList(),
-
-        // زر الإضافة
         ElevatedButton.icon(
-          onPressed: () {
-            setState(() {
-              ingredients.add({
-                'number': ingredients.length + 1,
-                'controller': TextEditingController(),
-                'image': null, // الحقل يبدأ كـ null بدلاً من String
-              });
-            });
-          },
-          icon: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
+          onPressed: _addStep,
+          icon: Icon(Icons.add, color: Colors.white),
           label: Text(
             'Add Steps',
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: Colors.white,
-            ),
+            style: TextStyle(fontSize: 12.sp, color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryColor,
