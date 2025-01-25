@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class socialButton extends StatelessWidget {
+class SocialButton extends StatelessWidget {
   final String imagePath;
   final double width;
   final double height;
   final VoidCallback onPressed;
 
-  const socialButton({
+  const SocialButton({
     super.key,
     required this.onPressed,
     required this.imagePath,

@@ -6,10 +6,10 @@ class CustomIngredientCard extends StatelessWidget {
   final String ingredientName;
 
   const CustomIngredientCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.ingredientName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

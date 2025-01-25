@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/screens/HomePage.dart';
+import 'package:recipe_book_app/screens/home_page_wrapper.dart';
+import 'package:recipe_book_app/screens/sign_up_page.dart';
 import '../utils/colors.dart';
-import '../widgets/CustomButton.dart';
-import '../widgets/CustomTextField.dart';
-import '../widgets/socialButton.dart';
-import '../widgets/textButton.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/social_button.dart';
+import '../widgets/text_link.dart';
 
-class signUpPage extends StatefulWidget {
-  @override
-  _signUpPageState createState() => _signUpPageState();
-}
-
-class _signUpPageState extends State<signUpPage> {
-  bool isChecked = false; // لإدارة حالة الـ Checkbox
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,85 +22,53 @@ class _signUpPageState extends State<signUpPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //Top Body
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Create an account',
+                      'Hello,',
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 26.sp,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'Let’s help you set up your account,\nit won’t take long.',
+                      'Welcome Back!',
                       style: TextStyle(
                         fontFamily: 'Poppins-SemiBold',
-                        fontSize: 8.sp,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 20.h),
                 CustomTextField(
-                  label: 'Name',
-                  labelSize: 12.sp,
-                  labelFamily: 'Poppins-SemiBold',
-                  hintText: 'Enter Name',
-                ),
-                SizedBox(height: 5.h),
-                CustomTextField(
                   label: 'Email',
-                  labelSize: 12.sp,
+                  labelSize: 14.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Email',
                 ),
                 SizedBox(height: 5.h),
                 CustomTextField(
                   label: 'Password',
-                  labelSize: 12.sp,
+                  labelSize: 14.sp,
                   labelFamily: 'Poppins-SemiBold',
                   hintText: 'Enter Password',
                 ),
                 SizedBox(height: 5.h),
-                CustomTextField(
-                  label: 'Confirm Password',
-                  labelSize: 12.sp,
-                  labelFamily: 'Poppins-SemiBold',
-                  hintText: 'Retype Password',
+                TextLink(
+                  onPressed: () {},
+                  text: 'Forgot Password?',
+                  textSize: 10.sp,
+                  textColor: AppColors.TextLinkColor,
                 ),
                 SizedBox(height: 5.h),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: isChecked,
-                      activeColor: AppColors.textButtonColor, // لون التفعيل
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value ?? false;
-                        });
-                      },
-                    ),
-                    textButton(
-                      onPressed: () {
-                        setState(
-                          () {
-                            isChecked = !isChecked;
-                          },
-                        );
-                      },
-                      text: 'Accept terms & Condition',
-                      textSize: 10.sp,
-                      textColor: AppColors.textButtonColor,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5.h),
+                //Bottom Body
                 Center(
                   child: CustomButton(
-                    title: 'Sign Up',
+                    title: 'Sign In',
                     titleSize: 12.sp,
                     titleColor: Colors.white,
                     icon: Icons.arrow_forward,
@@ -113,10 +77,10 @@ class _signUpPageState extends State<signUpPage> {
                     horizontalSize: 100.w,
                     iconOnRight: true,
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomePage(),
+                          builder: (context) => HomePageWrapper(),
                         ),
                       );
                     },
@@ -135,7 +99,7 @@ class _signUpPageState extends State<signUpPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: Text(
-                        'Or Sign Up With',
+                        'Or Sign in With',
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 6.sp,
@@ -155,12 +119,14 @@ class _signUpPageState extends State<signUpPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    socialButton(
+                    SocialButton(
                       onPressed: () {},
                       imagePath: 'assets/IMG/Icons/Google Icon.png',
                     ),
-                    SizedBox(width: 10.w),
-                    socialButton(
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    SocialButton(
                       onPressed: () {},
                       imagePath: 'assets/IMG/Icons/Facebook Icon.png',
                     ),
@@ -171,16 +137,21 @@ class _signUpPageState extends State<signUpPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already a member?',
+                      'Don’t have an account?',
                       style: TextStyle(fontSize: 10.sp),
                     ),
-                    textButton(
+                    TextLink(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignUpPage(),
+                          ),
+                        );
                       },
-                      text: 'Sign In',
+                      text: 'Sign up',
                       textSize: 10.sp,
-                      textColor: AppColors.textButtonColor,
+                      textColor: AppColors.TextLinkColor,
                     )
                   ],
                 ),

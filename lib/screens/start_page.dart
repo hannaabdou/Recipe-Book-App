@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/screens/signInPage.dart';
-import 'package:recipe_book_app/widgets/CustomButton.dart';
+import 'package:recipe_book_app/screens/sign_in_page.dart';
+import 'package:recipe_book_app/widgets/custom_button.dart';
 
-class startPage extends StatelessWidget {
+class StartPage extends StatelessWidget {
+  const StartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -73,7 +75,7 @@ class startPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => signInPage(),
+                    builder: (context) => SignInPage(),
                   ),
                 );
               },

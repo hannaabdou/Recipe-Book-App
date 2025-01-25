@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/widgets/customTextStyle.dart';
+import 'package:recipe_book_app/widgets/custom_text_style.dart';
 
-class aboutPage extends StatelessWidget {
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,7 @@ class aboutPage extends StatelessWidget {
               ),
               centerTitle: true,
               // النص في المنتصف
-              title: customTextStyle(
+              title: CustomTextStyle(
                 text: 'About App',
                 textWordSpacing: 5,
                 textLetterSpacing: 3,
@@ -54,7 +56,7 @@ class aboutPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                customTextStyle(
+                CustomTextStyle(
                   text: 'Recipe Rleam',
                   textWordSpacing: 5,
                   textLetterSpacing: 5,
@@ -62,7 +64,7 @@ class aboutPage extends StatelessWidget {
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 5.h),
-                customTextStyle(
+                CustomTextStyle(
                   text: 'Version 1.1',
                   textWordSpacing: 5,
                   textLetterSpacing: 5,
@@ -77,7 +79,7 @@ class aboutPage extends StatelessWidget {
                   height: 100.h,
                 ),
                 SizedBox(height: 10.h),
-                customTextStyle(
+                CustomTextStyle(
                   text: 'Made by',
                   textWordSpacing: 5,
                   textLetterSpacing: 5,
@@ -86,7 +88,7 @@ class aboutPage extends StatelessWidget {
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 5.h),
-                customTextStyle(
+                CustomTextStyle(
                   text: 'Cloud | 9',
                   textWordSpacing: 5,
                   textLetterSpacing: 5,

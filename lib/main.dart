@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:recipe_book_app/screens/HomePage.dart';
-import 'package:recipe_book_app/screens/RecipeIngredientspage.dart';
-import 'package:recipe_book_app/screens/profilepage.dart';
-import 'package:recipe_book_app/screens/splashScreen.dart';
+import 'package:recipe_book_app/screens/splash_screen.dart';
 import 'package:recipe_book_app/utils/boxs.dart';
 
 void main() async {
@@ -15,6 +12,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -25,8 +24,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-          // home: splashScreen(),
-          home: HomePage(),
+          home: SplashScreen(),
+          // home: HomePageWrapper(),
         );
       },
     );

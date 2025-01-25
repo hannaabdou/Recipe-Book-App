@@ -6,10 +6,10 @@ class CustomStepCard extends StatelessWidget {
   final String description;
 
   const CustomStepCard({
-    Key? key,
+    super.key,
     required this.stepNumber,
     required this.description,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,12 +8,12 @@ class CustomRecipeCard extends StatefulWidget {
   final bool showDeleteIcon;
 
   const CustomRecipeCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.title = '',
     required this.targetPage,
     this.showDeleteIcon = false,
-  }) : super(key: key);
+  });
 
   @override
   _CustomRecipeCardState createState() => _CustomRecipeCardState();

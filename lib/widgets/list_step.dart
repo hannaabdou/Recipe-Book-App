@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_book_app/widgets/CustomStepCard.dart';
+import 'package:recipe_book_app/widgets/custom_step_card.dart';
 
-class listStep extends StatelessWidget {
+class ListStep extends StatelessWidget {
   final List<Map<String, dynamic>> steps;
 
-  const listStep({Key? key, required this.steps}) : super(key: key);
+  const ListStep({Key? key, required this.steps}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

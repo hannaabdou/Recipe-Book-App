@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class textButton extends StatelessWidget {
+class TextLink extends StatelessWidget {
   final String text;
   final double textSize;
   final Color textColor;
   final VoidCallback onPressed;
 
-  const textButton(
+  const TextLink(
       {super.key,
       required this.text,
       required this.textSize,

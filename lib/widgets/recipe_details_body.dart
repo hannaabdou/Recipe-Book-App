@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/widgets/customTextStyle.dart';
+import 'package:recipe_book_app/widgets/custom_text_style.dart';
 
-import 'CustomFilter.dart';
-import 'CustomRecipeCard.dart';
+import 'custom_filter.dart';
+import 'custom_recipe_card.dart';
 import 'list_ingrident.dart';
 import 'list_step.dart';
 
@@ -123,7 +123,7 @@ class _RecipeDetailsBodyState extends State<RecipeDetailsBody> {
           targetPage: () {},
         ),
         SizedBox(height: 10.h),
-        customTextStyle(
+        CustomTextStyle(
           text: widget.recipeDescription,
           textSize: 10.sp,
           textColor: Colors.grey,
@@ -144,8 +144,8 @@ class _RecipeDetailsBodyState extends State<RecipeDetailsBody> {
         Expanded(
           child: SingleChildScrollView(
             child: _selectedFilterIndex == 0
-                ? listIngrident(ingredients: ingredients)
-                : listStep(steps: steps),
+                ? ListIngredient(ingredients: ingredients)
+                : ListStep(steps: steps),
           ),
         ),
       ],

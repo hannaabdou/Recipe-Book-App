@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class customTextStyle extends StatelessWidget {
+class CustomTextStyle extends StatelessWidget {
   final String text;
   final double textSize;
   final String textFamily;
@@ -9,7 +9,7 @@ class customTextStyle extends StatelessWidget {
   final FontWeight textWeight;
   final Color textColor;
 
-  const customTextStyle({
+  const CustomTextStyle({
     super.key,
     required this.text,
     required this.textSize,

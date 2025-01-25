@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/widgets/customTextStyle.dart';
+import 'package:recipe_book_app/widgets/custom_text_style.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback onPressed;
+  final bool showMoreIcon; // متغير للتحكم في إظهار أو إخفاء الأيقونة
 
   const CustomAppBar({
     super.key,
     required this.onPressed,
     required this.title,
+    this.showMoreIcon = true, // قيمة افتراضية تظهر الأيقونة
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: customTextStyle(
+      title: CustomTextStyle(
         text: title,
         textFamily: 'Poppins-SemiBold',
         textSize: 10.sp,
@@ -31,10 +33,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       actions: [
-        IconButton(
-          icon: Icon(Icons.more_vert, color: Colors.black),
-          onPressed: onPressed,
-        ),
+        if (showMoreIcon) // شرط إظهار أو إخفاء الأيقونة
+          IconButton(
+            icon: Icon(Icons.more_vert, color: Colors.black),
+            onPressed: onPressed,
+          ),
       ],
     );
   }

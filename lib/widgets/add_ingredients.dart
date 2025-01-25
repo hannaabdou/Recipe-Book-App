@@ -1,15 +1,17 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/utils/colors.dart';
+import 'upload_photo_function.dart';
 
-class addSteps extends StatefulWidget {
-  const addSteps({Key? key}) : super(key: key);
+class AddIngredients extends StatefulWidget {
+  const AddIngredients({Key? key}) : super(key: key);
 
   @override
-  State<addSteps> createState() => _addStepsState();
+  State<AddIngredients> createState() => _AddIngredientsState();
 }
 
-class _addStepsState extends State<addSteps> {
+class _AddIngredientsState extends State<AddIngredients> {
   List<Map<String, dynamic>> ingredients = [];
 
   @override
@@ -37,25 +39,58 @@ class _addStepsState extends State<addSteps> {
                   child: TextField(
                     cursorColor: AppColors.primaryColor,
                     controller: ingredient['controller'],
-                    maxLines: 3,
                     decoration: InputDecoration(
-                      hintText: 'Enter Step Description',
+                      hintText: 'Enter Ingredient Name',
                       hintStyle: TextStyle(fontSize: 10.sp, color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
-                        borderSide: BorderSide(
-                            color: Colors
-                                .grey), // لون الحدود عندما يكون الحقل غير مفعل
+                        borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
-                        borderSide: BorderSide(
-                            color: AppColors.primaryColor,
-                            width: 2), // لون الحدود عندما يكون الحقل مفعل
+                        borderSide:
+                            BorderSide(color: AppColors.primaryColor, width: 2),
                       ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10.w),
+
+                // زر اختيار الصورة
+                InkWell(
+                  onTap: () async {
+                    final image =
+                        await UploadPhotoFunction.pickImageFromGallery();
+                    if (image != null) {
+                      setState(() {
+                        ingredient['image'] = File(image.path); // تحديث الصورة
+                      });
+                    }
+                  },
+                  child: Container(
+                    height: 35.r,
+                    width: 35.r,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey), // تحديد الحدود
+                      borderRadius:
+                          BorderRadius.circular(7.r), // الحواف الدائرية
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(7.r),
+                      // الحواف الدائرية للصورة
+                      child: ingredient['image'] != null
+                          ? Image.file(
+                              ingredient['image'],
+                              fit: BoxFit.contain, // لملء الحاوية
+                            )
+                          : Icon(
+                              Icons.image,
+                              size: 22.r,
+                              color: Colors.grey.shade600,
+                            ),
                     ),
                   ),
                 ),
@@ -107,7 +142,7 @@ class _addStepsState extends State<addSteps> {
             color: Colors.white,
           ),
           label: Text(
-            'Add Steps',
+            'Add Ingredients',
             style: TextStyle(
               fontSize: 12.sp,
               color: Colors.white,

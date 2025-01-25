@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/widgets/customTextStyle.dart';
-import 'UploadPhotoFunction.dart';
+import 'package:recipe_book_app/widgets/custom_text_style.dart';
+import 'upload_photo_function.dart';
 
-class uploadPhotoButton extends StatefulWidget {
+class UploadPhotoButton extends StatefulWidget {
   final String label;
   final double labelSize;
   final String text;
@@ -13,8 +13,8 @@ class uploadPhotoButton extends StatefulWidget {
   final double height;
   final double iconSize;
 
-  uploadPhotoButton({
-    Key? key,
+  const UploadPhotoButton({
+    super.key,
     this.label = 'Photo',
     this.text = 'Choose From Device',
     this.labelSize = 10,
@@ -22,13 +22,13 @@ class uploadPhotoButton extends StatefulWidget {
     this.height = 110,
     this.iconSize = 46,
     this.textSize = 16,
-  }) : super(key: key);
+  });
 
   @override
-  _uploadPhotoButtonState createState() => _uploadPhotoButtonState();
+  _UploadPhotoButtonState createState() => _UploadPhotoButtonState();
 }
 
-class _uploadPhotoButtonState extends State<uploadPhotoButton> {
+class _UploadPhotoButtonState extends State<UploadPhotoButton> {
   File? _selectedImage;
 
   @override
@@ -46,7 +46,7 @@ class _uploadPhotoButtonState extends State<uploadPhotoButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          customTextStyle(
+          CustomTextStyle(
             text: widget.label,
             textSize: widget.labelSize.sp,
             textFamily: 'Poppins-SemiBold',
@@ -77,7 +77,7 @@ class _uploadPhotoButtonState extends State<uploadPhotoButton> {
                           size: widget.iconSize.r,
                           color: Colors.grey.shade600,
                         ),
-                        customTextStyle(
+                        CustomTextStyle(
                           text: widget.text,
                           textFamily: 'Poppins-SemiBold',
                           textSize: widget.textSize.sp,

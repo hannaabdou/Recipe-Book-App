@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'CustomIngridentCard.dart';
+import 'custom_ingredient_card.dart';
 
-class listIngrident extends StatelessWidget {
+class ListIngredient extends StatelessWidget {
   final List<Map<String, dynamic>> ingredients;
 
-  const listIngrident({Key? key, required this.ingredients}) : super(key: key);
+  const ListIngredient({Key? key, required this.ingredients}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
