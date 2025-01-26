@@ -4,9 +4,10 @@ import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
 import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'package:recipe_book_app/widgets/custom_filter.dart';
+import '../models/recipe.dart';
+import '../screens/recipe_details_page.dart';
 import '../services/api_service.dart';
 import 'custom_app_bar.dart';
-import '../models/recipe.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<String> filters = [
@@ -65,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Header Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -94,6 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(height: 23.h),
+
+            // Filter Section
             CustomFilter(
               filters: widget.filters,
               paddingHorizontal: 12.w,
@@ -101,6 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onFilterChanged: _onFilterChanged,
             ),
             SizedBox(height: 16.h),
+
+            // Recipes List
             Flexible(
               child: FutureBuilder<List<Recipe>>(
                 future: _mealsFuture,
@@ -110,64 +116,54 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Center(child: Text('No recipes found.'));
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/IMG/Icons/empty.png',
+                            width: 130.w,
+                            height: 130.h,
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(height: 20.h),
+                          CustomTextStyle(
+                            text:
+                                'There are no Recipes of ${widget.filters[_selectedFilterIndex]}',
+                            textFamily: 'Poppins-SemiBold',
+                            textSize: 16.sp,
+                            textColor: Colors.black,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    );
                   } else {
                     final recipes = snapshot.data!;
-                    return SingleChildScrollView(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: recipes.isEmpty
-                              ? [
-                                  SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height / 2,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/IMG/Icons/empty.png',
-                                          width: 130.w,
-                                          height: 130.h,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        SizedBox(height: 20.h),
-                                        CustomTextStyle(
-                                          text:
-                                              'There are no Recipes of ${widget.filters[_selectedFilterIndex]}',
-                                          textFamily: 'Poppins-SemiBold',
-                                          textSize: 16.sp,
-                                          textColor: Colors.black,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
+                    return ListView.builder(
+                      itemCount: recipes.length,
+                      itemBuilder: (context, index) {
+                        final recipe = recipes[index];
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 7.h),
+                          child: CustomRecipeCard(
+                            title: recipe.title,
+                            imageUrl: recipe.imageUrl ??
+                                'https://via.placeholder.com/150',
+                            targetPage: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RecipeDetailsPage(
+                                    recipe: recipe, // تمرير الوصفة مباشرة
                                   ),
-                                ]
-                              : recipes.map((recipe) {
-                                  return Padding(
-                                    padding: EdgeInsets.only(bottom: 7.h),
-                                    child: CustomRecipeCard(
-                                      title: recipe.title,
-                                      imageUrl: recipe.imageUrl ??
-                                          'https://via.placeholder.com/150',
-                                      targetPage: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/recipe_details',
-                                          arguments: recipe,
-                                        );
-                                      },
-                                    ),
-                                  );
-                                }).toList(),
-                        ),
-                      ),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
                     );
                   }
                 },

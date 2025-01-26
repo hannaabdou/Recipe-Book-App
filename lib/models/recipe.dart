@@ -1,41 +1,60 @@
+import '../data/ingredient_box.dart';
+import '../data/step_box.dart';
+
 class Recipe {
   String id;
   String title;
   String? description;
+  String? category;
   String? imageUrl;
-  List<String> ingredients;
-  List<String> steps;
-  bool isFavorite;
+  final List<IngredientBox> ingredients;
+  final List<StepBox> steps;
 
   Recipe({
-    required this.id,
+    this.id = '0',
     required this.title,
     this.description,
+    this.category,
     this.imageUrl,
     required this.ingredients,
     required this.steps,
-    this.isFavorite = false,
   });
-  factory Recipe.fromApi(Map<String, dynamic> data) {
-    final ingredients = <String>[];
-    final steps = <String>[];
 
+  factory Recipe.fromApi(Map<String, dynamic> data) {
+    final ingredients = <IngredientBox>[];
     for (int i = 1; i <= 20; i++) {
-      final ingredient = data['strIngredient$i'];
-      final measure = data['strMeasure$i'];
+      final ingredient = data['strIngredient$i']?.trim();
+      final measure = data['strMeasure$i']?.trim();
       if (ingredient != null && ingredient.isNotEmpty) {
-        ingredients.add('$measure $ingredient');
+        ingredients.add(IngredientBox(
+          name: '$ingredient (${measure ?? ''})',
+          imageUrl:
+              'https://www.themealdb.com/images/ingredients/$ingredient.png',
+        ));
       }
     }
-    final instructions = data['strInstructions'];
-    if (instructions != null) {
-      steps.addAll(instructions.split('\r\n'));
+
+    final steps = <StepBox>[];
+    final instructions = data['strInstructions']?.trim();
+    if (instructions != null && instructions.isNotEmpty) {
+      final stepsList = instructions
+          .split('\r\n')
+          .where((step) => step.trim().isNotEmpty)
+          .toList();
+      for (var i = 0; i < stepsList.length; i++) {
+        steps.add(StepBox(
+          stepNumber: i + 1,
+          description: stepsList[i].trim(),
+        ));
+      }
     }
+
     return Recipe(
-      id: data['idMeal'],
-      title: data['strMeal'],
-      description: data['strCategory'],
-      imageUrl: data['strMealThumb'],
+      id: data['idMeal'] ?? '0',
+      title: data['strMeal'] ?? 'Unknown Recipe',
+      description: data['strInstructions'] ?? '',
+      category: data['strCategory'] ?? '',
+      imageUrl: data['strMealThumb'] ?? '',
       ingredients: ingredients,
       steps: steps,
     );

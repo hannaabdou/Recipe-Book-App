@@ -12,10 +12,10 @@ class RecipeBox {
   final List<StepBox> steps;
 
   RecipeBox({
-    required this.id,
+    this.id = 0,
     required this.name,
     required this.description,
-    required this.category,
+    this.category = '',
     required this.imageUrl,
     required this.ingredients,
     required this.steps,
