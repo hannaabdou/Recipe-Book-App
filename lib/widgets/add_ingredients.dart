@@ -23,7 +23,6 @@ class _AddIngredientsState extends State<AddIngredients> {
             padding: EdgeInsets.symmetric(vertical: 5.h),
             child: Row(
               children: [
-                // رقم العنصر
                 CircleAvatar(
                   radius: 12.r,
                   backgroundColor: AppColors.primaryColor,
@@ -33,8 +32,6 @@ class _AddIngredientsState extends State<AddIngredients> {
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // حقل الإدخال
                 Expanded(
                   child: TextField(
                     cursorColor: AppColors.primaryColor,
@@ -58,15 +55,13 @@ class _AddIngredientsState extends State<AddIngredients> {
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // زر اختيار الصورة
                 InkWell(
                   onTap: () async {
                     final image =
                         await UploadPhotoFunction.pickImageFromGallery();
                     if (image != null) {
                       setState(() {
-                        ingredient['image'] = File(image.path); // تحديث الصورة
+                        ingredient['image'] = File(image.path);
                       });
                     }
                   },
@@ -74,17 +69,15 @@ class _AddIngredientsState extends State<AddIngredients> {
                     height: 35.r,
                     width: 35.r,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey), // تحديد الحدود
-                      borderRadius:
-                          BorderRadius.circular(7.r), // الحواف الدائرية
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(7.r),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(7.r),
-                      // الحواف الدائرية للصورة
                       child: ingredient['image'] != null
                           ? Image.file(
                               ingredient['image'],
-                              fit: BoxFit.contain, // لملء الحاوية
+                              fit: BoxFit.contain,
                             )
                           : Icon(
                               Icons.image,
@@ -95,14 +88,9 @@ class _AddIngredientsState extends State<AddIngredients> {
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // زر الحذف
                 InkWell(
                   onTap: () => setState(() {
-                    // حذف العنصر
                     ingredients.remove(ingredient);
-
-                    // إعادة الترقيم
                     for (int i = 0; i < ingredients.length; i++) {
                       ingredients[i]['number'] = i + 1;
                     }
@@ -111,13 +99,13 @@ class _AddIngredientsState extends State<AddIngredients> {
                     height: 26.h,
                     width: 26.w,
                     decoration: BoxDecoration(
-                      color: Colors.redAccent, // لون الخلفية
-                      shape: BoxShape.circle, // الشكل الدائري
+                      color: Colors.redAccent,
+                      shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      Icons.delete_outline, // أيقونة الحذف
-                      color: Colors.white, // لون الأيقونة
-                      size: 20.r, // حجم الأيقونة
+                      Icons.delete_outline,
+                      color: Colors.white,
+                      size: 20.r,
                     ),
                   ),
                 ),
@@ -125,15 +113,13 @@ class _AddIngredientsState extends State<AddIngredients> {
             ),
           );
         }),
-
-        // زر الإضافة
         ElevatedButton.icon(
           onPressed: () {
             setState(() {
               ingredients.add({
                 'number': ingredients.length + 1,
                 'controller': TextEditingController(),
-                'image': null, // الحقل يبدأ كـ null بدلاً من String
+                'image': null,
               });
             });
           },

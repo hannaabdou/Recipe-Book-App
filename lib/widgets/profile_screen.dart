@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               paddingHorizontal: 10.w,
               onFilterChanged: (index) {
                 setState(() {
-                  _selectedFilterIndex = index; // تغيير الفلتر
+                  _selectedFilterIndex = index;
                 });
               },
             ),

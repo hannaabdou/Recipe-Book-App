@@ -8,7 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String titleFamily;
   final double textWordSpacing;
   final double textLetterSpacing;
-  final bool showMoreIcon; // متغير للتحكم في إظهار أو إخفاء الأيقونة
+  final bool showMoreIcon;
   final bool showBackIcon;
   final VoidCallback onPressed;
 
@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showMoreIcon = false,
     this.showBackIcon = true,
     this.textWordSpacing = 0,
-    this.textLetterSpacing = 0, // قيمة افتراضية تظهر الأيقونة
+    this.textLetterSpacing = 0,
   });
 
   @override
@@ -39,7 +39,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       automaticallyImplyLeading: showBackIcon,
-      // التحكم في زر الرجوع
       leading: showBackIcon
           ? IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),

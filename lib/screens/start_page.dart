@@ -73,12 +73,11 @@ class StartPage extends StatelessWidget {
                   context,
                   PageRouteBuilder(
                     transitionDuration: Duration(milliseconds: 600),
-                    // المدة لجعل الأنيميشن أبطأ
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         SignInPage(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0); // الانتقال من اليمين
+                      const begin = Offset(1.0, 0.0);
                       const end = Offset.zero;
                       const curve = Curves.easeInOut;
 

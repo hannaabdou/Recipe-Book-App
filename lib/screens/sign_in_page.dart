@@ -22,7 +22,6 @@ class SignInPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //Top Body
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,7 +64,6 @@ class SignInPage extends StatelessWidget {
                   textColor: AppColors.TextLinkColor,
                 ),
                 SizedBox(height: 5.h),
-                //Bottom Body
                 Center(
                   child: CustomButton(
                     title: 'Sign In',

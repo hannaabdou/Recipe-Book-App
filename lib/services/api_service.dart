@@ -5,7 +5,6 @@ import '../models/recipe.dart';
 class MealService {
   static const String baseUrl = 'https://www.themealdb.com/api/json/v1/1';
 
-  // Fetch a list of meals by category (e.g., Dessert)
   Future<List<Recipe>> fetchMealsByCategory(String category) async {
     final response =
         await http.get(Uri.parse('$baseUrl/filter.php?c=$category'));
@@ -19,7 +18,6 @@ class MealService {
     }
   }
 
-  // Fetch details for a specific meal by ID
   Future<Recipe> fetchMealDetails(String mealId) async {
     final response = await http.get(Uri.parse('$baseUrl/lookup.php?i=$mealId'));
 

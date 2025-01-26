@@ -21,7 +21,6 @@ class RecipeBox {
     required this.steps,
   });
 
-  // Constructor فارغ مع قيم افتراضية
   static RecipeBox empty() {
     return RecipeBox(
       id: 0,

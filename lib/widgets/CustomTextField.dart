@@ -27,11 +27,11 @@ class CustomTextField extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 8), // مسافة بين النص والحقل
+        const SizedBox(height: 8),
         TextField(
           controller: controller,
           onChanged: onChanged,
-          style: const TextStyle(color: Colors.white), // النص داخل الحقل
+          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: const TextStyle(color: Colors.grey),

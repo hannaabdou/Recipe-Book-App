@@ -22,19 +22,19 @@ class SocialButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10), // الزوايا
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2), // الظل
+              color: Colors.grey.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3), // اتجاه الظل
+              offset: Offset(0, 3),
             ),
           ],
         ),
-        padding: EdgeInsets.all(10), // الحواف الداخلية
+        padding: EdgeInsets.all(10),
         child: Image.asset(
-          imagePath, // مسار الصورة
+          imagePath,
           width: width.w,
           height: height.h,
         ),

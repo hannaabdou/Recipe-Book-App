@@ -30,30 +30,27 @@ class _CustomRecipeCardState extends State<CustomRecipeCard> {
         height: 200.h,
         child: Stack(
           children: [
-            // Container الخارجي مع الحواف المنحنية
             Positioned.fill(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20), // حجم الانحناء
+                borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  widget
-                      .imageUrl, // استخدام Image.network لعرض الصورة من الإنترنت
-                  fit: BoxFit.cover, // ملائمة الصورة لاحتلال المساحة كاملة
+                  widget.imageUrl,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            // الطبقة العلوية مع التدرج
             Positioned.fill(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20), // نفس حجم الانحناء
+                borderRadius: BorderRadius.circular(20),
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.transparent, // البداية شفافة
-                        Colors.black, // النهاية سوداء
+                        Colors.transparent,
+                        Colors.black,
                       ],
-                      begin: Alignment.topCenter, // اتجاه التدرج (من الأعلى)
-                      end: Alignment.bottomCenter, // إلى الأسفل
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
                     ),
                   ),
                 ),

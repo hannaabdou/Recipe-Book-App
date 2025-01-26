@@ -21,7 +21,6 @@ class _AddStepsState extends State<AddSteps> {
             padding: EdgeInsets.symmetric(vertical: 5.h),
             child: Row(
               children: [
-                // رقم العنصر
                 CircleAvatar(
                   radius: 12.r,
                   backgroundColor: AppColors.primaryColor,
@@ -31,8 +30,6 @@ class _AddStepsState extends State<AddSteps> {
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // حقل الإدخال
                 Expanded(
                   child: TextField(
                     cursorColor: AppColors.primaryColor,
@@ -46,28 +43,20 @@ class _AddStepsState extends State<AddSteps> {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
-                        borderSide: BorderSide(
-                            color: Colors
-                                .grey), // لون الحدود عندما يكون الحقل غير مفعل
+                        borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
-                        borderSide: BorderSide(
-                            color: AppColors.primaryColor,
-                            width: 2), // لون الحدود عندما يكون الحقل مفعل
+                        borderSide:
+                            BorderSide(color: AppColors.primaryColor, width: 2),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(width: 10.w),
-
-                // زر الحذف
                 InkWell(
                   onTap: () => setState(() {
-                    // حذف العنصر
                     ingredients.remove(ingredient);
-
-                    // إعادة الترقيم
                     for (int i = 0; i < ingredients.length; i++) {
                       ingredients[i]['number'] = i + 1;
                     }
@@ -76,13 +65,13 @@ class _AddStepsState extends State<AddSteps> {
                     height: 26.h,
                     width: 26.w,
                     decoration: BoxDecoration(
-                      color: Colors.redAccent, // لون الخلفية
-                      shape: BoxShape.circle, // الشكل الدائري
+                      color: Colors.redAccent,
+                      shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      Icons.delete_outline, // أيقونة الحذف
-                      color: Colors.white, // لون الأيقونة
-                      size: 20.r, // حجم الأيقونة
+                      Icons.delete_outline,
+                      color: Colors.white,
+                      size: 20.r,
                     ),
                   ),
                 ),
@@ -90,15 +79,13 @@ class _AddStepsState extends State<AddSteps> {
             ),
           );
         }),
-
-        // زر الإضافة
         ElevatedButton.icon(
           onPressed: () {
             setState(() {
               ingredients.add({
                 'number': ingredients.length + 1,
                 'controller': TextEditingController(),
-                'image': null, // الحقل يبدأ كـ null بدلاً من String
+                'image': null,
               });
             });
           },

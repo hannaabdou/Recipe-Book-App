@@ -8,28 +8,25 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true, // لجعل الـ AppBar فوق المحتوى
+      extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.h), // ضبط ارتفاع الـ AppBar
+        preferredSize: Size.fromHeight(60.h),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: AppBar(
               backgroundColor: Colors.transparent,
-              // خلفية شفافة
               elevation: 0,
-              // إزالة الظلال
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Colors.white, // لون الأيقونة
+                  color: Colors.white,
                   size: 18.r,
                 ),
                 onPressed: () {
-                  Navigator.pop(context); // العودة للخلف
+                  Navigator.pop(context);
                 },
               ),
               centerTitle: true,
-              // النص في المنتصف
               title: CustomTextStyle(
                 text: 'About App',
                 textWordSpacing: 5,
@@ -41,17 +38,14 @@ class AboutPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Image
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/IMG/Wallpaper.png'),
-                // Add your image to assets
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          // Content
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

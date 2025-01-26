@@ -38,7 +38,7 @@ class _UploadPhotoButtonState extends State<UploadPhotoButton> {
         final image = await UploadPhotoFunction.pickImageFromGallery();
         if (image != null) {
           setState(() {
-            _selectedImage = File(image.path); // حفظ الصورة لتحديث الـ UI
+            _selectedImage = File(image.path);
           });
         }
       },
@@ -52,10 +52,10 @@ class _UploadPhotoButtonState extends State<UploadPhotoButton> {
             textFamily: 'Poppins-SemiBold',
             textColor: Colors.black,
           ),
-          SizedBox(height: 2.h), // مسافة بين النص والحقل
+          SizedBox(height: 2.h),
           Container(
-            width: widget.width, // عرض كامل للـ Container
-            height: widget.height.h, // ارتفاع الـ Container
+            width: widget.width,
+            height: widget.height.h,
             decoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(
@@ -88,8 +88,8 @@ class _UploadPhotoButtonState extends State<UploadPhotoButton> {
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.file(
-                        _selectedImage!, // عرض الصورة المحددة
-                        fit: BoxFit.cover, // لتغطية الـ Container
+                        _selectedImage!,
+                        fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,
                       ),

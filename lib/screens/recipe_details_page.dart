@@ -31,7 +31,6 @@ class _RecipeDetailsPageState extends State<RecipeDetailsPage> {
         textWordSpacing: 3.w,
         textLetterSpacing: 1.w,
         title: 'Recipe Page',
-        // title: selectedRecipe.name,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),

@@ -15,8 +15,7 @@ Widget buildSearchField(TextEditingController searchController,
               icon: Icon(Icons.clear),
               onPressed: () {
                 searchController.clear();
-                FocusScope.of(context)
-                    .unfocus(); // Now works because context is passed
+                FocusScope.of(context).unfocus();
               },
             )
           : null,

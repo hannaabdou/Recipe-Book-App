@@ -40,8 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<List<Recipe>> _fetchMealsByFilter(String filter) async {
     if (filter == 'All') {
-      // Fetch all meals (you might need to implement this in your API service)
-      return _mealService.fetchMealsByCategory('Dessert'); // Placeholder
+      return _mealService.fetchMealsByCategory('Dessert');
     } else {
       return _mealService.fetchMealsByCategory(filter);
     }
