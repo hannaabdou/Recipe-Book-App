@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:recipe_book_app/screens/home_page_wrapper.dart';
+import 'package:recipe_book_app/screens/splash_screen.dart';
 import 'package:recipe_book_app/utils/boxs.dart';
 
 void main() async {
@@ -24,9 +25,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-          // home: SplashScreen(),
-          home: HomePageWrapper(),
-          // home: Test(),
+          home: SplashScreen(),
+          // home: HomePageWrapper(),
         );
       },
     );
