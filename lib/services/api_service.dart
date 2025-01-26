@@ -5,7 +5,6 @@ import '../models/recipe.dart';
 class MealService {
   static const String baseUrl = 'https://www.themealdb.com/api/json/v1/1';
 
-  // Fetch a list of meals by category (e.g., Dessert)
   Future<List<Recipe>> fetchMealsByCategory(String category) async {
     final response =
         await http.get(Uri.parse('$baseUrl/filter.php?c=$category'));
@@ -19,7 +18,6 @@ class MealService {
     }
   }
 
-  // Fetch details for a specific meal by ID
   Future<Recipe> fetchMealDetails(String mealId) async {
     final response = await http.get(Uri.parse('$baseUrl/lookup.php?i=$mealId'));
 
@@ -32,36 +30,3 @@ class MealService {
     }
   }
 }
-
-/*
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import '../models/recipe.dart';
-
-class ApiService {
-  final String baseUrl = "https://www.themealdb.com/api/json/v1/1";
-
-  Future<List<Recipe>> fetchRecipes() async {
-    final response = await http.get(Uri.parse("$baseUrl/search.php?s="));
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      final List recipes = data['meals'] ?? [];
-      return recipes.map((recipe) => Recipe.fromJson(recipe)).toList();
-    } else {
-      throw Exception("Failed to load recipes");
-    }
-  }
-
-  Future<Recipe?> fetchRecipeDetails(String id) async {
-    final response = await http.get(Uri.parse("$baseUrl/lookup.php?i=$id"));
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return Recipe.fromJson(data['meals'][0]);
-    } else {
-      throw Exception("Failed to load recipe details");
-    }
-  }
-}
-*/

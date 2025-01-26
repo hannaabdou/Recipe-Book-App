@@ -15,7 +15,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  bool isChecked = false; // لإدارة حالة الـ Checkbox
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     Checkbox(
                       value: isChecked,
-                      activeColor: AppColors.TextLinkColor, // لون التفعيل
+                      activeColor: AppColors.TextLinkColor,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       onChanged: (bool? value) {
                         setState(() {

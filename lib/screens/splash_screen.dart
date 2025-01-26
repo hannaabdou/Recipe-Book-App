@@ -20,7 +20,6 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _controller = AnimationController(
       duration: Duration(seconds: 3),
-      // زيادة المدة إلى 5 ثوانٍ (يمكنك تعديل هذه القيمة حسب الحاجة)
       vsync: this,
     );
 
@@ -30,20 +29,12 @@ class _SplashScreenState extends State<SplashScreen>
 
     _moveUpAnimation =
         Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0)).animate(
-      CurvedAnimation(
-          parent: _controller,
-          curve:
-              Curves.easeInOut), // تغيير إلى easeInOut لجعل الحركة أكثر سلاسة
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
-
-    // Start the animations when the splash screen is shown
     _controller.forward();
-
-    // Navigate after animation completes
     _controller.addStatusListener(
       (status) {
         if (status == AnimationStatus.completed) {
-          // After the animation is completed, navigate to the next page with fade-in animation
           Future.delayed(
             Duration(milliseconds: 3000),
             () {
@@ -55,8 +46,6 @@ class _SplashScreenState extends State<SplashScreen>
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     const curve = Curves.easeInOut;
-
-                    // Define opacity animation
                     var opacityAnimation = animation.drive(
                       CurveTween(curve: curve),
                     );
@@ -88,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/IMG/Wallpaper.png', // خلفية
+            'assets/IMG/Wallpaper.png',
             fit: BoxFit.cover,
           ),
           FadeTransition(
@@ -99,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/IMG/Icons/Logo 2.png', // شعار
+                    'assets/IMG/Icons/Logo 2.png',
                     width: 100.w,
                     height: 100.h,
                   ),

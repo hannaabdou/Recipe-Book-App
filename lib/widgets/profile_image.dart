@@ -28,21 +28,21 @@ class _ProfileImageState extends State<ProfileImage> {
           final image = await UploadPhotoFunction.pickImageFromGallery();
           if (image != null) {
             setState(() {
-              _selectedImage = File(image.path); // حفظ الصورة لتحديث الـ UI
+              _selectedImage = File(image.path);
             });
           }
         },
         child: Container(
-          width: widget.width.w, // العرض
-          height: widget.height.h, // الطول
+          width: widget.width.w,
+          height: widget.height.h,
           decoration: BoxDecoration(
-            shape: BoxShape.circle, // يجعل الشكل دائريًا
-            color: Colors.grey[300], // لون الخلفية
+            shape: BoxShape.circle,
+            color: Colors.grey[300],
             image: DecorationImage(
               image: _selectedImage != null
                   ? FileImage(_selectedImage!) as ImageProvider
                   : AssetImage('assets/IMG/Icons/Default Profile.png'),
-              fit: BoxFit.cover, // لجعل الصورة تحتوي داخل الإطار
+              fit: BoxFit.cover,
             ),
           ),
         ),

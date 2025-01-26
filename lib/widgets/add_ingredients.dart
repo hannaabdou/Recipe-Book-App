@@ -5,41 +5,20 @@ import 'package:recipe_book_app/utils/colors.dart';
 import 'upload_photo_function.dart';
 
 class AddIngredients extends StatefulWidget {
-  const AddIngredients({Key? key}) : super(key: key);
+  const AddIngredients({super.key});
 
   @override
   State<AddIngredients> createState() => _AddIngredientsState();
 }
 
 class _AddIngredientsState extends State<AddIngredients> {
-  final List<Map<String, dynamic>> ingredients = [];
-
-  void _addIngredient() {
-    setState(() {
-      ingredients.add({
-        'number': ingredients.length + 1,
-        'controller': TextEditingController(),
-        'image': null,
-      });
-    });
-  }
-
-  void _removeIngredient(int index) {
-    setState(() {
-      ingredients.removeAt(index);
-      for (int i = 0; i < ingredients.length; i++) {
-        ingredients[i]['number'] = i + 1;
-      }
-    });
-  }
+  List<Map<String, dynamic>> ingredients = [];
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ...ingredients.asMap().entries.map((entry) {
-          int index = entry.key;
-          Map<String, dynamic> ingredient = entry.value;
+        ...ingredients.map((ingredient) {
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 5.h),
             child: Row(
@@ -70,7 +49,7 @@ class _AddIngredientsState extends State<AddIngredients> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7.r),
                         borderSide:
-                        BorderSide(color: AppColors.primaryColor, width: 2),
+                            BorderSide(color: AppColors.primaryColor, width: 2),
                       ),
                     ),
                   ),
@@ -79,7 +58,7 @@ class _AddIngredientsState extends State<AddIngredients> {
                 InkWell(
                   onTap: () async {
                     final image =
-                    await UploadPhotoFunction.pickImageFromGallery();
+                        await UploadPhotoFunction.pickImageFromGallery();
                     if (image != null) {
                       setState(() {
                         ingredient['image'] = File(image.path);
@@ -97,20 +76,25 @@ class _AddIngredientsState extends State<AddIngredients> {
                       borderRadius: BorderRadius.circular(7.r),
                       child: ingredient['image'] != null
                           ? Image.file(
-                        ingredient['image'],
-                        fit: BoxFit.contain,
-                      )
+                              ingredient['image'],
+                              fit: BoxFit.contain,
+                            )
                           : Icon(
-                        Icons.image,
-                        size: 22.r,
-                        color: Colors.grey.shade600,
-                      ),
+                              Icons.image,
+                              size: 22.r,
+                              color: Colors.grey.shade600,
+                            ),
                     ),
                   ),
                 ),
                 SizedBox(width: 10.w),
                 InkWell(
-                  onTap: () => _removeIngredient(index),
+                  onTap: () => setState(() {
+                    ingredients.remove(ingredient);
+                    for (int i = 0; i < ingredients.length; i++) {
+                      ingredients[i]['number'] = i + 1;
+                    }
+                  }),
                   child: Container(
                     height: 26.h,
                     width: 26.w,
@@ -128,13 +112,27 @@ class _AddIngredientsState extends State<AddIngredients> {
               ],
             ),
           );
-        }).toList(),
+        }),
         ElevatedButton.icon(
-          onPressed: _addIngredient,
-          icon: Icon(Icons.add, color: Colors.white),
+          onPressed: () {
+            setState(() {
+              ingredients.add({
+                'number': ingredients.length + 1,
+                'controller': TextEditingController(),
+                'image': null,
+              });
+            });
+          },
+          icon: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           label: Text(
             'Add Ingredients',
-            style: TextStyle(fontSize: 12.sp, color: Colors.white),
+            style: TextStyle(
+              fontSize: 12.sp,
+              color: Colors.white,
+            ),
           ),
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryColor,

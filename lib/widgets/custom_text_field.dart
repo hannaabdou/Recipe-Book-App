@@ -12,11 +12,11 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final ValueChanged<String>? onChanged;
   final TextEditingController? controller;
-  final double? width; // عرض الحقل
-  final double? height; // طول الحقل
+  final double? width;
+  final double? height;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     this.label = '',
     this.hintText,
     this.onChanged,
@@ -26,9 +26,9 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.labelSize = 16,
     this.labelFamily,
-    this.width, // تخصيص العرض
-    this.height, // تخصيص الطول
-  }) : super(key: key);
+    this.width,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +44,10 @@ class CustomTextField extends StatelessWidget {
             fontFamily: labelFamily,
           ),
         ),
-        SizedBox(height: 2.h), // مسافة بين النص والحقل
+        SizedBox(height: 2.h),
         SizedBox(
-          width: width, // عرض الحقل
-          height: height, // طول الحقل
+          width: width,
+          height: height,
           child: TextField(
             cursorColor: AppColors.primaryColor,
             controller: controller,

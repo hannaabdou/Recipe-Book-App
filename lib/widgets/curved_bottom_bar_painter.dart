@@ -15,11 +15,11 @@ class CurvedBottomBarPainter extends CustomPainter {
       size.width * 0.4,
       0,
       size.width * 0.42,
-      20.h, // ضبط ارتفاع الانحناء
+      20.h,
     );
     path.arcToPoint(
       Offset(size.width * 0.58, 20.h),
-      radius: Radius.circular(10.r), // ضبط نصف القطر
+      radius: Radius.circular(10.r),
       clockwise: false,
     );
     path.quadraticBezierTo(
@@ -33,7 +33,7 @@ class CurvedBottomBarPainter extends CustomPainter {
     path.lineTo(0, size.height);
     path.close();
 
-    canvas.drawShadow(path, Colors.black, 5.w, true); // ضبط الظل
+    canvas.drawShadow(path, Colors.black, 5.w, true);
     canvas.drawPath(path, paint);
   }
 

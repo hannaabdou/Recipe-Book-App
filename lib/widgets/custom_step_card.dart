@@ -30,7 +30,6 @@ class CustomStepCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            // SizedBox(height: 2.h),
             Text(
               description,
               style: TextStyle(

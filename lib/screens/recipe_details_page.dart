@@ -11,7 +11,7 @@ import '../widgets/list_step.dart';
 class RecipeDetailsPage extends StatefulWidget {
   final RecipeBox recipe;
 
-  const RecipeDetailsPage({Key? key, required this.recipe}) : super(key: key);
+  const RecipeDetailsPage({super.key, required this.recipe});
 
   @override
   _RecipeDetailsPageState createState() => _RecipeDetailsPageState();
@@ -31,7 +31,6 @@ class _RecipeDetailsPageState extends State<RecipeDetailsPage> {
         textWordSpacing: 3.w,
         textLetterSpacing: 1.w,
         title: 'Recipe Page',
-        // title: selectedRecipe.name,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),

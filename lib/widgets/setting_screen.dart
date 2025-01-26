@@ -48,12 +48,12 @@ class _SettingScreenState extends State<SettingScreen> {
                   ],
                 ),
                 Transform.scale(
-                  scale: 0.7.r, // يمكنك تغيير هذه القيمة لتحديد الحجم
+                  scale: 0.7.r,
                   child: Switch(
                     value: isDarkMode,
                     onChanged: (value) {
                       setState(() {
-                        isDarkMode = value; // تغيير حالة الوضع الداكن
+                        isDarkMode = value;
                       });
                     },
                     activeColor: AppColors.primaryColor,
@@ -79,7 +79,6 @@ class _SettingScreenState extends State<SettingScreen> {
                             AboutPage(),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
-                          // التأثير هنا هو التلاشي
                           var fadeAnimation =
                               Tween(begin: 0.0, end: 1.0).animate(animation);
                           return FadeTransition(

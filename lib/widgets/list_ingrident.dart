@@ -6,7 +6,7 @@ import 'custom_ingredient_card.dart';
 class ListIngredient extends StatelessWidget {
   final List<IngredientBox> ingredients;
 
-  const ListIngredient({Key? key, required this.ingredients}) : super(key: key);
+  const ListIngredient({super.key, required this.ingredients});
 
   @override
   Widget build(BuildContext context) {

@@ -6,15 +6,14 @@ class CustomFilter extends StatefulWidget {
   final List<String> filters;
   final double paddingHorizontal;
   final double paddingVertical;
-  final ValueChanged<int> onFilterChanged; // لإرسال الإشارة عند تغيير الفلتر
-
+  final ValueChanged<int> onFilterChanged;
   const CustomFilter({
-    Key? key,
+    super.key,
     required this.filters,
     required this.onFilterChanged,
     this.paddingHorizontal = 16,
     this.paddingVertical = 7,
-  }) : super(key: key);
+  });
 
   @override
   _CustomFilterState createState() => _CustomFilterState();
@@ -27,7 +26,7 @@ class _CustomFilterState extends State<CustomFilter> {
     setState(() {
       _selectedIndex = index;
     });
-    widget.onFilterChanged(index); // إرسال الإشارة عند تغيير الفلتر
+    widget.onFilterChanged(index);
   }
 
   @override
@@ -57,8 +56,7 @@ class _CustomFilterState extends State<CustomFilter> {
                   color: _selectedIndex == index
                       ? Colors.transparent
                       : AppColors.primaryColor,
-                  // اللون الرمادي عندما لا يكون محددًا
-                  width: 1, // سمك الحدود
+                  width: 1,
                 ),
               ),
               child: Text(
@@ -68,7 +66,7 @@ class _CustomFilterState extends State<CustomFilter> {
                   fontWeight: FontWeight.bold,
                   color: _selectedIndex == index
                       ? Colors.white
-                      : Color(0xFFFF71B1A1),
+                      : Color(0xffff71b1a1),
                 ),
               ),
             ),

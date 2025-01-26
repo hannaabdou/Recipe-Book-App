@@ -16,13 +16,10 @@ class Recipe {
     required this.steps,
     this.isFavorite = false,
   });
-
-  // Factory method to create a Recipe from API data
   factory Recipe.fromApi(Map<String, dynamic> data) {
     final ingredients = <String>[];
     final steps = <String>[];
 
-    // Extract ingredients and measures
     for (int i = 1; i <= 20; i++) {
       final ingredient = data['strIngredient$i'];
       final measure = data['strMeasure$i'];
@@ -30,13 +27,10 @@ class Recipe {
         ingredients.add('$measure $ingredient');
       }
     }
-
-    // Extract steps from instructions
     final instructions = data['strInstructions'];
     if (instructions != null) {
       steps.addAll(instructions.split('\r\n'));
     }
-
     return Recipe(
       id: data['idMeal'],
       title: data['strMeal'],
