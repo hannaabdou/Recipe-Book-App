@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 23.h),
             CustomFilter(
               filters: widget.filters,
-              paddingHorizontal: 7.w,
+              paddingHorizontal: 12.w,
               paddingVertical: 2.h,
               onFilterChanged: _onFilterChanged,
             ),

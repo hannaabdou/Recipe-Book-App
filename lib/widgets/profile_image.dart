@@ -24,14 +24,7 @@ class _ProfileImageState extends State<ProfileImage> {
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: () async {
-          final image = await UploadPhotoFunction.pickImageFromGallery();
-          if (image != null) {
-            setState(() {
-              _selectedImage = File(image.path);
-            });
-          }
-        },
+        onTap: () => ProfileImage(),
         child: Container(
           width: widget.width.w,
           height: widget.height.h,
