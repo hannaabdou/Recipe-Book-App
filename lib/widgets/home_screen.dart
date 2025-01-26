@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextStyle(
-                      text: 'Hello, Mohamed Abdelsatar',
+                      text: 'Hello, User',
                       textFamily: 'Poppins-SemiBold',
                       textSize: 10.sp,
                       textLetterSpacing: 0.5.w,
