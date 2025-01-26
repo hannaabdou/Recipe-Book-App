@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_book_app/widgets/home_screen.dart';
 import 'package:recipe_book_app/widgets/profile_screen.dart';
+import 'package:recipe_book_app/widgets/search_screen.dart';
 import 'package:recipe_book_app/widgets/setting_screen.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
-import '../widgets/search_screen.dart';
 
 class HomePageWrapper extends StatefulWidget {
   const HomePageWrapper({super.key});
@@ -17,7 +17,7 @@ class _HomePageWrapperState extends State<HomePageWrapper> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    //SearchScreen(),
+    SearchScreen(),
     ProfileScreen(),
     SettingScreen(),
   ];

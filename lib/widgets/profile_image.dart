@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/widgets/upload_photo_function.dart';
 
 class ProfileImage extends StatefulWidget {
   final double width;
