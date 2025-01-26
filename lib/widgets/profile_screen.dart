@@ -20,12 +20,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-
         titleSize: 14,
         textWordSpacing: 3,
         textLetterSpacing: 1,
         showMoreIcon: true,
-        onPressed: () {},
+        onPressed: () {
+          showMenu(
+            context: context,
+            position: RelativeRect.fromLTRB(100, 80, 0, 0), // Adjust as needed
+            items: [
+              PopupMenuItem(
+                value: 'edit_profile',
+                child: Row(
+                  children: [
+                    Icon(Icons.edit,
+                        color: const Color.fromARGB(255, 12, 147, 41)),
+                    SizedBox(width: 10),
+                    Text("Edit Profile"),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'edit_recipe',
+                child: Row(
+                  children: [
+                    SizedBox(width: 10),
+                    Text("Edit Recipe"),
+                  ],
+                ),
+              ),
+            ],
+          ).then((value) {
+            if (value == 'edit_profile') {
+              print("Edit Profile Selected");
+            } else if (value == 'edit_recipe') {
+              print("Edit Recipe Selected");
+            }
+          });
+        },
         showBackIcon: false,
         title: 'Profile Page',
       ),
