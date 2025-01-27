@@ -99,20 +99,23 @@ class _CustomNewRecipeCardState extends State<CustomNewRecipeCard> {
             Positioned(
               bottom: 25,
               right: 10,
-              child: Container(
-                width: 35.w,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: CircleBorder(),
-                ),
-                child: Center(
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.bookmark_border,
-                      size: 20.r,
+              child: Visibility(
+                visible: widget.showDeleteIcon,
+                child: Container(
+                  width: 35.w,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: CircleBorder(),
+                  ),
+                  child: Center(
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.bookmark_border,
+                        size: 20.r,
+                      ),
+                      color: Colors.teal,
+                      onPressed: () {},
                     ),
-                    color: Colors.teal,
-                    onPressed: () {},
                   ),
                 ),
               ),

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'add_recipe_form.dart';
+import '../screens/add_recipe_form.dart';
 import 'curved_bottom_bar_painter.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemSelected;
-  final Function(Map<String, dynamic>) addRecipe; // Add this parameter
+  final Function(Map<String, dynamic>) addRecipe;
 
   const CustomBottomNavBar({
     super.key,
     required this.selectedIndex,
     required this.onItemSelected,
-    required this.addRecipe, // Initialize it
+    required this.addRecipe,
   });
 
   @override

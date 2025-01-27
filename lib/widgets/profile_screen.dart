@@ -6,9 +6,7 @@ import 'package:recipe_book_app/widgets/custom_app_bar.dart';
 import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
 import 'package:recipe_book_app/widgets/upload_photo_function.dart';
-import 'add_recipe_form.dart';
 import 'custom_filter.dart';
-import 'custom_new_recipe_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   final List<Map<String, dynamic>> recipes;
@@ -19,7 +17,6 @@ class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
-
 
 class _ProfileScreenState extends State<ProfileScreen> {
   File? _selectedImage;
@@ -105,15 +102,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: widget.recipes.isEmpty
                   ? Center(child: Text('No recipes added yet!'))
                   : ListView.builder(
-                itemCount: widget.recipes.length,
-                itemBuilder: (context, index) {
-                  final recipe = widget.recipes[index];
-                  return ListTile(
-                    title: Text(recipe['name']),
-                    subtitle: Text(recipe['description']),
-                  );
-                },
-              ),
+                      itemCount: widget.recipes.length,
+                      itemBuilder: (context, index) {
+                        final recipe = widget.recipes[index];
+                        final imagePath = recipe['imagePath'] as String?;
+
+                        return ListTile(
+                          leading: imagePath != null
+                              ? Image.file(
+                                  File(imagePath),
+                                  width: 50.w,
+                                  height: 50.h,
+                                  fit: BoxFit.contain,
+                                )
+                              : Icon(Icons.image, size: 50, color: Colors.grey),
+                          title: Text(recipe['title'] ?? 'No Title'),
+                          subtitle:
+                              Text(recipe['description'] ?? 'No Description'),
+                        );
+                      },
+                    ),
             ),
           ],
         ),
