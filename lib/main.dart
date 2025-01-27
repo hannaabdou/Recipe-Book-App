@@ -5,7 +5,6 @@ import 'package:recipe_book_app/screens/home_page_wrapper.dart';
 import 'package:recipe_book_app/screens/splash_screen.dart';
 import 'package:recipe_book_app/utils/boxs.dart';
 
-
 void main() async {
   await Hive.initFlutter();
 
@@ -26,8 +25,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-          // home: SplashScreen(),
-          home: HomePageWrapper(),
+          home: SplashScreen(),
+          // home: HomePageWrapper(),
         );
       },
     );
