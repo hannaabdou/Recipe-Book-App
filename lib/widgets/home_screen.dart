@@ -4,7 +4,6 @@ import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
 import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'package:recipe_book_app/widgets/custom_filter.dart';
-import 'package:recipe_book_app/widgets/profile_screen.dart';
 import '../models/recipe.dart';
 import '../screens/recipe_details_page.dart';
 import '../services/api_service.dart';

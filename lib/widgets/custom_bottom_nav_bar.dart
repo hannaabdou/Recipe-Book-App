@@ -20,7 +20,7 @@ class CustomBottomNavBar extends StatelessWidget {
     return CustomPaint(
       painter: CurvedBottomBarPainter(),
       child: SizedBox(
-        height: 60,
+        height: 50.h,
         child: Stack(
           children: [
             Row(
@@ -28,7 +28,7 @@ class CustomBottomNavBar extends StatelessWidget {
               children: [
                 _buildIcon(Icons.home, 0),
                 _buildIcon(Icons.search, 1),
-                SizedBox(width: 80),
+                SizedBox(width: 60.w),
                 _buildIcon(Icons.person, 2),
                 _buildIcon(Icons.settings, 3),
               ],
@@ -36,14 +36,14 @@ class CustomBottomNavBar extends StatelessWidget {
             Center(
               heightFactor: 0.5,
               child: Container(
-                width: 45,
-                height: 45,
+                width: 45.w,
+                height: 45.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.teal,
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.add, color: Colors.white, size: 25),
+                  icon: Icon(Icons.add, color: Colors.white, size: 25.r),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -68,7 +68,7 @@ class CustomBottomNavBar extends StatelessWidget {
       onPressed: () => onItemSelected(index),
       icon: Icon(
         icon,
-        size: 22,
+        size: 22.r,
         color: selectedIndex == index ? Colors.teal : Colors.grey,
       ),
     );

@@ -22,6 +22,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   File? _selectedImage;
   int _selectedFilterIndex = 0;
 
+  // Filtered recipes based on selected filter
+  List<Map<String, dynamic>> get filteredRecipes {
+    if (_selectedFilterIndex == 0) {
+      return widget.recipes; // Show all recipes
+    } else if (_selectedFilterIndex == 1) {
+      return widget.recipes.where((recipe) => recipe['saved'] == true).toList();
+    }
+    return [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               textColor: Colors.black,
             ),
             SizedBox(height: 10.h),
+            // Custom Filter
             CustomFilter(
               filters: ['Added Recipes', 'Saved Recipes'],
               paddingHorizontal: 10.w,
@@ -98,13 +109,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             SizedBox(height: 10.h),
+            // Recipe List
             Expanded(
-              child: widget.recipes.isEmpty
-                  ? Center(child: Text('No recipes added yet!'))
+              child: filteredRecipes.isEmpty
+                  ? Center(
+                      child: CustomTextStyle(
+                        text: 'No Recipes Found',
+                        textSize: 10.sp,
+                        textFamily: 'Poppins-Thin',
+                        textWeight: FontWeight.w700,
+                        textLetterSpacing: 1.w,
+                        textWordSpacing: 2.w,
+                        textColor: Colors.black,
+                      ),
+                    )
                   : ListView.builder(
-                      itemCount: widget.recipes.length,
+                      itemCount: filteredRecipes.length,
                       itemBuilder: (context, index) {
-                        final recipe = widget.recipes[index];
+                        final recipe = filteredRecipes[index];
                         final imagePath = recipe['imagePath'] as String?;
 
                         return ListTile(
@@ -115,10 +137,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: 50.h,
                                   fit: BoxFit.contain,
                                 )
-                              : Icon(Icons.image, size: 50, color: Colors.grey),
+                              : Icon(Icons.image,
+                                  size: 50.r, color: Colors.grey),
                           title: Text(recipe['title'] ?? 'No Title'),
                           subtitle:
                               Text(recipe['description'] ?? 'No Description'),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                              // Confirm deletion before removing the recipe
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Delete Recipe'),
+                                    content: Text(
+                                        'Are you sure you want to delete this recipe? This action cannot be undone.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        // Cancel
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            // Remove the recipe from the list
+                                            widget.recipes.remove(recipe);
+                                          });
+                                          Navigator.of(context)
+                                              .pop(); // Close the dialog
+                                        },
+                                        child: Text(
+                                          'Delete',
+                                          style: TextStyle(color: Colors.red),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       },
                     ),
