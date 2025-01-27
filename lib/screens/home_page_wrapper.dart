@@ -14,13 +14,26 @@ class HomePageWrapper extends StatefulWidget {
 
 class _HomePageWrapperState extends State<HomePageWrapper> {
   int _selectedIndex = 0;
+  List<Map<String, dynamic>> _recipes = [];
 
-  final List<Widget> _pages = [
-    HomeScreen(),
-    SearchScreen(),
-    ProfileScreen(),
-    SettingScreen(),
-  ];
+  void _addRecipe(Map<String, dynamic> recipe) {
+    setState(() {
+      _recipes.add(recipe);
+    });
+  }
+
+  final List<Widget> _pages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _pages.addAll([
+      HomeScreen(),
+      SearchScreen(),
+      ProfileScreen(recipes: _recipes),
+      SettingScreen(),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +46,7 @@ class _HomePageWrapperState extends State<HomePageWrapper> {
             _selectedIndex = index;
           });
         },
+        addRecipe: _addRecipe, // Pass the callback
       ),
     );
   }

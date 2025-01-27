@@ -1,18 +1,28 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_book_app/widgets/custom_app_bar.dart';
 import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
+import 'package:recipe_book_app/widgets/upload_photo_function.dart';
+import 'add_recipe_form.dart';
 import 'custom_filter.dart';
+import 'custom_new_recipe_card.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  final List<Map<String, dynamic>> recipes;
+  final Function(Map<String, dynamic>)? addRecipe;
+
+  const ProfileScreen({required this.recipes, this.addRecipe, super.key});
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
+
 class _ProfileScreenState extends State<ProfileScreen> {
+  File? _selectedImage;
   int _selectedFilterIndex = 0;
 
   @override
@@ -60,10 +70,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
         child: Column(
           children: [
-            ProfileImage(),
+            ProfileImage(
+              onPressed: () async {
+                final image = await UploadPhotoFunction.pickImageFromGallery();
+                if (image != null) {
+                  setState(() {
+                    _selectedImage = File(image.path);
+                  });
+                }
+              },
+            ),
             SizedBox(height: 5.h),
             CustomTextStyle(
-              text: 'Gust',
+              text: 'User',
               textSize: 12.sp,
               textWeight: FontWeight.w900,
               textFamily: 'Poppins-SemiBold',
@@ -80,6 +99,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _selectedFilterIndex = index;
                 });
               },
+            ),
+            SizedBox(height: 10.h),
+            Expanded(
+              child: widget.recipes.isEmpty
+                  ? Center(child: Text('No recipes added yet!'))
+                  : ListView.builder(
+                itemCount: widget.recipes.length,
+                itemBuilder: (context, index) {
+                  final recipe = widget.recipes[index];
+                  return ListTile(
+                    title: Text(recipe['name']),
+                    subtitle: Text(recipe['description']),
+                  );
+                },
+              ),
             ),
           ],
         ),

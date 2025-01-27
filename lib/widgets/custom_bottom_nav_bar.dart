@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/screens/add_recipe_page.dart';
+import 'add_recipe_form.dart';
 import 'curved_bottom_bar_painter.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemSelected;
+  final Function(Map<String, dynamic>) addRecipe; // Add this parameter
 
   const CustomBottomNavBar({
     super.key,
     required this.selectedIndex,
     required this.onItemSelected,
+    required this.addRecipe, // Initialize it
   });
 
   @override
@@ -18,7 +20,7 @@ class CustomBottomNavBar extends StatelessWidget {
     return CustomPaint(
       painter: CurvedBottomBarPainter(),
       child: SizedBox(
-        height: 60.h,
+        height: 60,
         child: Stack(
           children: [
             Row(
@@ -26,27 +28,29 @@ class CustomBottomNavBar extends StatelessWidget {
               children: [
                 _buildIcon(Icons.home, 0),
                 _buildIcon(Icons.search, 1),
-                SizedBox(width: 80.w),
+                SizedBox(width: 80),
                 _buildIcon(Icons.person, 2),
                 _buildIcon(Icons.settings, 3),
               ],
             ),
             Center(
-              heightFactor: 0.5.h,
+              heightFactor: 0.5,
               child: Container(
-                width: 45.w,
-                height: 45.h,
+                width: 45,
+                height: 45,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.teal,
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.add, color: Colors.white, size: 25.sp),
+                  icon: Icon(Icons.add, color: Colors.white, size: 25),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AddRecipePage(),
+                        builder: (context) => AddRecipeForm(
+                          addRecipe: addRecipe, // Pass the callback
+                        ),
                       ),
                     );
                   },
@@ -64,7 +68,7 @@ class CustomBottomNavBar extends StatelessWidget {
       onPressed: () => onItemSelected(index),
       icon: Icon(
         icon,
-        size: 22.sp,
+        size: 22,
         color: selectedIndex == index ? Colors.teal : Colors.grey,
       ),
     );

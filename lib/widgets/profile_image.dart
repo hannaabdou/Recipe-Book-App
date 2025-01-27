@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProfileImage extends StatefulWidget {
   final double width;
   final double height;
+  final VoidCallback onPressed;
 
   const ProfileImage({
     super.key,
     this.width = 120,
     this.height = 120,
+    required this.onPressed,
   });
 
   @override
@@ -23,7 +25,7 @@ class _ProfileImageState extends State<ProfileImage> {
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: () => ProfileImage(),
+        onTap: widget.onPressed,
         child: Container(
           width: widget.width.w,
           height: widget.height.h,
@@ -34,7 +36,7 @@ class _ProfileImageState extends State<ProfileImage> {
               image: _selectedImage != null
                   ? FileImage(_selectedImage!) as ImageProvider
                   : AssetImage('assets/IMG/Icons/Default Profile.png'),
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           ),
         ),

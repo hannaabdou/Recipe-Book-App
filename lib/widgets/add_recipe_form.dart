@@ -1,52 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_book_app/widgets/custom_button.dart';
-import 'package:recipe_book_app/widgets/custom_text_field.dart';
-import 'package:recipe_book_app/widgets/upload_photo_button.dart';
 
-import 'add_ingredients.dart';
-import 'add_steps.dart';
+class AddRecipeForm extends StatefulWidget {
+  final Function(Map<String, dynamic>) addRecipe;
 
-class AddRecipeForm extends StatelessWidget {
-  const AddRecipeForm({super.key});
+  const AddRecipeForm({required this.addRecipe, super.key});
+
+  @override
+  State<AddRecipeForm> createState() => _AddRecipeFormState();
+}
+
+class _AddRecipeFormState extends State<AddRecipeForm> {
+  final TextEditingController recipeNameController = TextEditingController();
+  final TextEditingController recipeDescriptionController =
+  TextEditingController();
+
+  void _submitRecipe() {
+    // Validate the form fields
+    if (recipeNameController.text.isEmpty ||
+        recipeDescriptionController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fill in all fields!')),
+      );
+      return;
+    }
+
+    // Create the new recipe object
+    final newRecipe = {
+      'name': recipeNameController.text,
+      'description': recipeDescriptionController.text,
+    };
+
+    widget.addRecipe(newRecipe); // Call the callback to update recipes
+    Navigator.pop(context); // Navigate back after adding the recipe
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        CustomTextField(
-          label: 'Name',
-          hintText: 'Enter Recipe Name',
-          labelSize: 10.sp,
-          labelColor: Colors.black,
-          labelFontWeight: FontWeight.bold,
+    return Scaffold(
+      appBar: AppBar(title: Text('Add Recipe')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: recipeNameController,
+              decoration: InputDecoration(labelText: 'Recipe Name'),
+            ),
+            TextField(
+              controller: recipeDescriptionController,
+              decoration: InputDecoration(labelText: 'Description'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _submitRecipe,
+              child: Text('Add Recipe'),
+            ),
+          ],
         ),
-        SizedBox(height: 10.h),
-        CustomTextField(
-          label: 'Description',
-          hintText: 'Enter Recipe Description',
-          labelColor: Colors.black,
-          labelSize: 10.sp,
-          labelFontWeight: FontWeight.bold,
-          maxLines: 5,
-        ),
-        SizedBox(height: 10.h),
-        AddIngredients(),
-        SizedBox(height: 10.h),
-        AddSteps(),
-        SizedBox(height: 10.h),
-        UploadPhotoButton(),
-        SizedBox(height: 10.h),
-        CustomButton(
-          onPressed: () {},
-          title: 'Add',
-          titleSize: 14.sp,
-          titleColor: Colors.white,
-          buttonColor: Color(0xFFF4B855),
-        ),
-        SizedBox(height: 15.h)
-      ],
+      ),
     );
   }
 }

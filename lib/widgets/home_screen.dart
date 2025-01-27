@@ -4,6 +4,7 @@ import 'package:recipe_book_app/widgets/custom_text_style.dart';
 import 'package:recipe_book_app/widgets/profile_image.dart';
 import 'package:recipe_book_app/widgets/custom_recipe_card.dart';
 import 'package:recipe_book_app/widgets/custom_filter.dart';
+import 'package:recipe_book_app/widgets/profile_screen.dart';
 import '../models/recipe.dart';
 import '../screens/recipe_details_page.dart';
 import '../services/api_service.dart';
@@ -18,7 +19,11 @@ class HomeScreen extends StatefulWidget {
     'Vegetarian',
   ];
 
-  HomeScreen({super.key});
+  // final Function(int) onItemSelected;
+
+  HomeScreen({
+    super.key,
+  });
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -55,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: CustomAppBar(
         onPressed: () {},
-        titleSize: 14,
-        textWordSpacing: 3,
-        textLetterSpacing: 1,
+        titleSize: 8.sp,
+        textWordSpacing: 3.w,
+        textLetterSpacing: 1.w,
         showBackIcon: false,
         title: 'Home Page',
       ),
@@ -76,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     CustomTextStyle(
                       text: 'Hello, User',
                       textFamily: 'Poppins-SemiBold',
-                      textSize: 10.sp,
+                      textSize: 12.sp,
                       textLetterSpacing: 0.5.w,
                       textColor: Colors.black,
                     ),
@@ -90,8 +95,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 ProfileImage(
-                  width: 35,
-                  height: 35,
+                  onPressed: () {},
+                  width: 35.w,
+                  height: 35.h,
                 ),
               ],
             ),
